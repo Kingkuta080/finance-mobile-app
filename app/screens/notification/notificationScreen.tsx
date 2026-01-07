@@ -34,7 +34,12 @@ const NotificationScreen = () => {
           >
             {/* Today Notifications */}
             <View style={styles.notificationGroup}>
-              <Text style={styles.groupTitle}>Today</Text>
+              <View style={styles.groupHeader}>
+                <Text style={styles.groupTitle}>Today</Text>
+                <TouchableOpacity>
+                  <Text style={styles.seeAllText}>See all</Text>
+                </TouchableOpacity>
+              </View>
               
               {/* Reminder Notification */}
               <View style={styles.notificationItem}>
@@ -71,7 +76,12 @@ const NotificationScreen = () => {
 
             {/* Yesterday Notifications */}
             <View style={styles.notificationGroup}>
-              <Text style={styles.groupTitle}>Yesterday</Text>
+              <View style={styles.groupHeader}>
+                <Text style={styles.groupTitle}>Yesterday</Text>
+                <TouchableOpacity>
+                  <Text style={styles.seeAllText}>See all</Text>
+                </TouchableOpacity>
+              </View>
               
               {/* Transactions Notification */}
               <View style={styles.notificationItem}>
@@ -109,7 +119,12 @@ const NotificationScreen = () => {
 
             {/* This Weekend Notifications */}
             <View style={styles.notificationGroup}>
-              <Text style={styles.groupTitle}>This Weekend</Text>
+              <View style={styles.groupHeader}>
+                <Text style={styles.groupTitle}>This Weekend</Text>
+                <TouchableOpacity>
+                  <Text style={styles.seeAllText}>See all</Text>
+                </TouchableOpacity>
+              </View>
               
               {/* Expense Record Notification */}
               <View style={styles.notificationItem}>

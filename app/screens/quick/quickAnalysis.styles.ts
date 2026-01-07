@@ -280,6 +280,25 @@ export const styles = StyleSheet.create({
     opacity: 0.8,
     marginTop: 4,
   },
+  transactionsHeader: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    paddingHorizontal: 24,
+    marginBottom: 16,
+  },
+  transactionsTitle: {
+    ...typography.titleBold,
+    fontSize: 20,
+    color: colors.void,
+    fontWeight: 'bold',
+  },
+  seeAllText: {
+    ...typography.bodyMedium,
+    fontSize: 14,
+    color: colors.void,
+    fontWeight: '500',
+  },
   transactionsContainer: {
     paddingHorizontal: 24,
   },

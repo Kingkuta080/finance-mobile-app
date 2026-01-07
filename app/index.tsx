@@ -1,4 +1,4 @@
-import QuickAnalysis from "./screens/quick/quickAnalysis";
+import TransactionScreen from "./screens/transaction/transactionScreen";
   export default function Index() {
-  return <QuickAnalysis />;
+  return <TransactionScreen />;
 }

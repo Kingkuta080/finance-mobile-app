@@ -139,6 +139,12 @@ const QuickAnalysis = () => {
             </View>
 
             {/* Transaction List */}
+            <View style={styles.transactionsHeader}>
+              <Text style={styles.transactionsTitle}>Transactions</Text>
+              <TouchableOpacity>
+                <Text style={styles.seeAllText}>See all</Text>
+              </TouchableOpacity>
+            </View>
             <View style={styles.transactionsContainer}>
               {/* Salary Transaction */}
               <View style={styles.transactionItem}>

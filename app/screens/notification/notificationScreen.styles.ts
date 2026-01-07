@@ -69,12 +69,23 @@ export const styles = StyleSheet.create({
     marginBottom: 24,
     paddingHorizontal: 24,
   },
+  groupHeader: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    marginBottom: 16,
+  },
   groupTitle: {
     ...typography.titleBold,
     fontSize: 18,
     color: colors.void,
     fontWeight: 'bold',
-    marginBottom: 16,
+  },
+  seeAllText: {
+    ...typography.bodyMedium,
+    fontSize: 14,
+    color: colors.void,
+    fontWeight: '500',
   },
   notificationItem: {
     flexDirection: 'row',
