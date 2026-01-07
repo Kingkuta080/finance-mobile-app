@@ -1,7 +1,7 @@
 import { Ionicons } from '@expo/vector-icons'
 import { StatusBar } from 'expo-status-bar'
 import React, { useState } from 'react'
-import { ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
+import { Image, ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 import { colors, typography } from '../../utils/globalStyle'
 
 const HomeScreen = () => {
@@ -77,27 +77,41 @@ const HomeScreen = () => {
         {/* Summary Card */}
         <View style={styles.summaryCard}>
           <View style={styles.summaryItem}>
-            <View style={styles.summaryIconCircle}>
-              <Ionicons name="car" size={24} color={colors.caribbeanGreen} />
+            <View style={styles.progressContainerWrapper}>
+              {/* Circular Progress Indicator */}
+              <View style={styles.circularProgressOuter}>
+                {/* Progress Fill Arc - ~67% */}
+                <View style={styles.progressArcContainer}>
+                  <View style={styles.progressArc1} />
+                  <View style={styles.progressArc2} />
+                </View>
+                <View style={styles.circularProgressInner}>
+                 <Image source={require('../../../app/../assets/images/car.svg')} style={{ width: 50, height: 50, alignSelf: 'center' }} resizeMode="contain" />
+               </View>
+               </View>
             </View>
-            <Text style={styles.summaryLabel}>Savings On Goals</Text>
+            <View style={styles.savingsTextContainer}>
+              <Text style={styles.savingsTextLine1}>Savings</Text>
+              <Text style={styles.savingsTextLine2}>On Goals</Text>
+            </View>
           </View>
 
           <View style={styles.summaryDivider} />
 
           <View style={styles.summaryItem}>
             <View style={styles.summaryRow}>
-              <Ionicons name="cash" size={20} color={colors.caribbeanGreen} />
+              <Image source={require('../../../app/../assets/images/salary.svg')} style={{ width: 25, height: 25, alignSelf: 'center' }} resizeMode="contain" />
               <View style={styles.summaryDetails}>
-                <Text style={styles.summaryLabel}>Revenue Last Week</Text>
-                <Text style={styles.summaryAmountPositive}>₦4,000.00</Text>
+                <Text style={styles.summaryLabelWhite}>Revenue Last Week</Text>
+                <Text style={styles.summaryAmountWhite}>₦4,000.00</Text>
               </View>
             </View>
+            <View style={styles.summaryRowDivider} />
             <View style={styles.summaryRow}>
-              <Ionicons name="restaurant" size={20} color={colors.vividBlue} />
+                <Image source={require('../../../app/../assets/images/food.svg')} style={{ width: 25, height: 25, alignSelf: 'center' }} resizeMode="contain" />
               <View style={styles.summaryDetails}>
-                <Text style={styles.summaryLabel}>Food Last Week</Text>
-                <Text style={styles.summaryAmountNegative}>-₦100.00</Text>
+                <Text style={styles.summaryLabelWhite}>Food Last Week</Text>
+                <Text style={styles.summaryAmountBlue}>-₦100.00</Text>
               </View>
             </View>
           </View>
@@ -386,24 +400,86 @@ const styles = StyleSheet.create({
     marginTop: 20,
     marginBottom: 24,
     flexDirection: 'row',
-    alignItems: 'center',
+    alignItems: 'flex-start',
     shadowColor: '#000',
     shadowOffset: { width: 0, height: 2 },
     shadowOpacity: 0.1,
     shadowRadius: 4,
+    height: 160,
     elevation: 3,
   },
   summaryItem: {
     flex: 1,
   },
-  summaryIconCircle: {
-    width: 48,
-    height: 48,
-    borderRadius: 24,
-    backgroundColor: colors.honeydew,
+  progressContainerWrapper: {
+    alignItems: 'center',
+    marginBottom: 12,
+  },
+  circularProgressOuter: {
+    width: 80,
+    height: 80,
+    borderRadius: 40,
+    borderWidth: 4,
+    borderColor: '#FFFFFF',
     justifyContent: 'center',
     alignItems: 'center',
+    position: 'relative',
     marginBottom: 8,
+    overflow: 'hidden',
+  },
+  progressArcContainer: {
+    position: 'absolute',
+    width: 80,
+    height: 80,
+    borderRadius: 40,
+  },
+  progressArc1: {
+    position: 'absolute',
+    width: 76,
+    height: 76,
+    borderRadius: 38,
+    borderWidth: 4,
+    borderColor: colors.caribbeanGreen,
+    borderRightColor: 'transparent',
+    borderBottomColor: 'transparent',
+    transform: [{ rotate: '-45deg' }],
+    top: 0,
+    left: 0,
+  },
+  progressArc2: {
+    position: 'absolute',
+    width: 76,
+    height: 38,
+    backgroundColor: colors.caribbeanGreen,
+    top: 0,
+    left: 0,
+    borderTopLeftRadius: 38,
+    borderTopRightRadius: 38,
+  },
+  circularProgressInner: {
+    width: 70,
+    height: 70,
+    borderRadius: 35,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: 'transparent',
+    zIndex: 1,
+  },
+  savingsTextContainer: {
+    alignItems: 'center',
+    marginTop: -15
+  },
+  savingsTextLine1: {
+    ...typography.bodyMedium,
+    fontSize: 12,
+    color: colors.void,
+    fontWeight: '500',
+  },
+  savingsTextLine2: {
+    ...typography.bodyMedium,
+    fontSize: 12,
+    color: colors.void,
+    fontWeight: '500',
   },
   summaryLabel: {
     ...typography.bodySmall,
@@ -411,17 +487,31 @@ const styles = StyleSheet.create({
     color: colors.void,
     opacity: 0.7,
   },
+  summaryLabelWhite: {
+    ...typography.bodySmall,
+    fontSize: 10,
+    color: colors.void,
+    fontWeight: '400',
+  },
   summaryDivider: {
     width: 1,
-    height: 60,
-    backgroundColor: colors.caribbeanGreen,
-    opacity: 0.2,
+    height: 200,
+    backgroundColor: '#FFFFFF',
+    opacity: 0.3,
     marginHorizontal: 16,
+    marginTop: 0,
   },
   summaryRow: {
     flexDirection: 'row',
     alignItems: 'center',
     marginBottom: 12,
+  },
+  summaryRowDivider: {
+    width: '80%',
+    height: 1,
+    backgroundColor: '#FFFFFF',
+    opacity: 0.3,
+    marginLeft: 32,
   },
   summaryDetails: {
     marginLeft: 12,
@@ -433,6 +523,20 @@ const styles = StyleSheet.create({
     color: colors.caribbeanGreen,
     fontWeight: 'bold',
     marginTop: 2,
+  },
+  summaryAmountWhite: {
+    ...typography.heading4,
+    fontSize: 18,
+    color: colors.void,
+    fontWeight: 'bold',
+    marginTop: 4,
+  },
+  summaryAmountBlue: {
+    ...typography.heading4,
+    fontSize: 18,
+    color: colors.oceanBlue,
+    fontWeight: 'bold',
+    marginTop: 4,
   },
   summaryAmountNegative: {
     ...typography.heading4,
