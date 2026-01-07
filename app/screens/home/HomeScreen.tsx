@@ -54,10 +54,10 @@ const HomeScreen = () => {
             <View style={styles.progressBarContainer}>
               <View style={styles.progressBar}>
                 <View style={styles.progressFill}>
-                  <Text style={styles.progressPercentage}>₦20,000.00</Text>
+                  <Text style={styles.progressPercentage}>30%</Text>
                 </View>
-                <View style={[styles.progressUnfilled, { width: '30%' }]}>
-                  <Text style={styles.progressTarget}>30%</Text>
+                <View style={[styles.progressUnfilled, { width: '70%' }]}>
+                  <Text style={styles.progressTarget}>₦20,000.00</Text>
                 </View>
               </View>
             </View>
@@ -208,7 +208,7 @@ const styles = StyleSheet.create({
   },
   headerSection: {
     backgroundColor: colors.caribbeanGreen,
-    paddingTop: 60,
+    paddingTop: 30,
     paddingHorizontal: 24,
     paddingBottom: 32,
     borderBottomLeftRadius: 30,
@@ -307,7 +307,7 @@ const styles = StyleSheet.create({
   progressBar: {
     flex: 1,
     height: 27,
-    backgroundColor: '#FFFFFF',
+    backgroundColor: colors.void,
     borderRadius: 24,
     overflow: 'hidden',
     flexDirection: 'row',
@@ -317,27 +317,28 @@ const styles = StyleSheet.create({
     flex: 1,
     height: '100%',
     justifyContent: 'center',
-    alignItems: 'flex-end',
-    paddingRight: 8,
+    alignItems: 'flex-start',
+    paddingLeft: 8,
   },
   progressUnfilled: {
     height: '100%',
-    backgroundColor: colors.void,
+    backgroundColor: colors.honeydew,
     borderRadius: 24,
     justifyContent: 'center',
-    alignItems: 'center',
+    alignItems: 'flex-end',
+    paddingRight: 8,
     minWidth: 40,
   },
   progressPercentage: {
     ...typography.bodySmall,
     fontSize: 12,
-    color: colors.void,
+    color: colors.honeydew,
     fontWeight: '600',
   },
   progressTarget: {
     ...typography.bodySmall,
     fontSize: 10,
-    color: '#FFFFFF',
+    color: colors.fenceGreen,
     fontWeight: '600',
     lineHeight: 12,
   },
