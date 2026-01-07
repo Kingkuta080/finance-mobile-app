@@ -11,13 +11,16 @@ const HomeScreen = () => {
     <View style={styles.container}>
       <StatusBar style="light" />
       
+      {/* Green Background - Full Height */}
+      <View style={styles.headerSection} />
+      
       <ScrollView 
         style={styles.scrollView}
         contentContainerStyle={styles.scrollContent}
         showsVerticalScrollIndicator={false}
       >
-        {/* Header Section - Teal Background */}
-        <View style={styles.headerSection}>
+        {/* Header Content */}
+        <View style={styles.headerContent}>
           <View style={styles.headerTop}>
             <View style={styles.greetingContainer}>
               <Text style={styles.greetingText}>Hi, Welcome Back</Text>
@@ -62,11 +65,14 @@ const HomeScreen = () => {
               </View>
             </View>
             <View style={styles.progressStatus}>
-              <Ionicons name="checkmark-circle" size={16} color={colors.void} />
+              <Ionicons name="checkbox-outline" size={16} color={colors.void} />
               <Text style={styles.progressStatusText}>30% Of Your Expenses, Looks Good.</Text>
             </View>
           </View>
         </View>
+
+        {/* Honeydew Background Layer */}
+        <View style={styles.honeydewBackground} />
 
         {/* Summary Card */}
         <View style={styles.summaryCard}>
@@ -207,12 +213,19 @@ const styles = StyleSheet.create({
     paddingBottom: 100,
   },
   headerSection: {
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    right: 0,
+    bottom: 0,
     backgroundColor: colors.caribbeanGreen,
+    width: '100%',
+    height: '100%',
+  },
+  headerContent: {
     paddingTop: 30,
     paddingHorizontal: 24,
     paddingBottom: 32,
-    borderBottomLeftRadius: 30,
-    borderBottomRightRadius: 30,
   },
   headerTop: {
     flexDirection: 'row',
@@ -345,6 +358,7 @@ const styles = StyleSheet.create({
   progressStatus: {
     flexDirection: 'row',
     alignItems: 'center',
+    justifyContent: 'center',
     marginTop: 8,
   },
   progressStatusText: {
@@ -354,12 +368,22 @@ const styles = StyleSheet.create({
     marginLeft: 6,
     opacity: 0.8,
   },
+  honeydewBackground: {
+    position: 'absolute',
+    left: 0,
+    right: 0,
+    top: 295,
+    bottom: 0,
+    backgroundColor: colors.honeydew,
+    borderTopLeftRadius: 40,
+    borderTopRightRadius: 40,
+  },
   summaryCard: {
-    backgroundColor: colors.lightGreen,
+    backgroundColor: colors.caribbeanGreen,
     borderRadius: 20,
     padding: 20,
     marginHorizontal: 24,
-    marginTop: -20,
+    marginTop: 20,
     marginBottom: 24,
     flexDirection: 'row',
     alignItems: 'center',
