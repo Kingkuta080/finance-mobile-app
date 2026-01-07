@@ -1,5 +1,5 @@
 import { View } from "react-native";
-import ForgottenPassword from "./screens/auth/forgottenPassword";
+import HomeScreen from "./screens/home/HomeScreen";
   export default function Index() {
   return (
     <View
@@ -9,7 +9,7 @@ import ForgottenPassword from "./screens/auth/forgottenPassword";
         alignItems: "center",
       }}
     >
-      <ForgottenPassword />
+      <HomeScreen />
     </View>
   );
 }
