@@ -1,8 +1,12 @@
+import { useRouter } from 'expo-router'
 import React from 'react'
 import { Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
-import { colors, typography } from '../../utils/globalStyle'
+import { colors } from '../utils/colors'
+import { typography } from '../utils/globalStyles'
 
-const LunchPage = () => {
+const LaunchPage = () => {
+  const router = useRouter()
+  
   return (
     <View style={styles.container}>
       <View style={styles.content}>
@@ -10,7 +14,7 @@ const LunchPage = () => {
         <View style={styles.logoSection}>
           {/* Financial Graph Icon */}
           <Image 
-            source={require('../../../assets/images/logo-light.png')} 
+            source={require('../../assets/images/logo-light.png')} 
             style={styles.logoImage}
             resizeMode="contain"
           />
@@ -27,26 +31,35 @@ const LunchPage = () => {
         {/* Action Buttons */}
         <View style={styles.buttonsContainer}>
           {/* Log In Button */}
-          <TouchableOpacity style={styles.loginButton}>
+          <TouchableOpacity 
+            style={styles.loginButton}
+            onPress={() => router.push('/(auth)/login')}
+          >
             <Text style={styles.loginButtonText}>Log In</Text>
           </TouchableOpacity>
 
           {/* Sign Up Button */}
-          <TouchableOpacity style={[styles.signUpButton, { marginTop: 16 }]}>
+          <TouchableOpacity 
+            style={[styles.signUpButton, { marginTop: 16 }]}
+            onPress={() => router.push('/(auth)/create-account')}
+          >
             <Text style={styles.signUpButtonText}>Sign Up</Text>
           </TouchableOpacity>
         </View>
 
         {/* Forgot Password Link */}
-        <View style={styles.forgotPasswordContainer}>
+        <TouchableOpacity 
+          style={styles.forgotPasswordContainer}
+          onPress={() => router.push('/(auth)/forgot-password')}
+        >
           <Text style={styles.forgotPassword}>Forgot Password?</Text>
-        </View>
+        </TouchableOpacity>
       </View>
     </View>
   )
 }
 
-export default LunchPage
+export default LaunchPage
 
 const styles = StyleSheet.create({
   container: {
@@ -129,3 +142,4 @@ const styles = StyleSheet.create({
     opacity: 0.8,
   },
 })
+

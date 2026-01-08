@@ -2,9 +2,12 @@ import { Ionicons } from '@expo/vector-icons'
 import { StatusBar } from 'expo-status-bar'
 import React, { useState } from 'react'
 import { ScrollView, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native'
-import { colors, typography } from '../../utils/globalStyle'
+import { colors } from '../utils/colors'
+import { typography } from '../utils/globalStyles'
+import { useRouter } from 'expo-router'
 
 const NewPassword = () => {
+  const router = useRouter()
   const [newPassword, setNewPassword] = useState('')
   const [confirmNewPassword, setConfirmNewPassword] = useState('')
   const [showNewPassword, setShowNewPassword] = useState(false)
@@ -76,7 +79,10 @@ const NewPassword = () => {
         </View>
 
         {/* Change Password Button */}
-        <TouchableOpacity style={styles.changePasswordButton}>
+        <TouchableOpacity 
+          style={styles.changePasswordButton}
+          onPress={() => router.push('/success')}
+        >
           <Text style={styles.changePasswordButtonText}>Change Password</Text>
         </TouchableOpacity>
       </ScrollView>

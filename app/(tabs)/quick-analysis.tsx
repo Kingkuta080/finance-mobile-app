@@ -1,12 +1,14 @@
 import { Ionicons } from '@expo/vector-icons'
 import { StatusBar } from 'expo-status-bar'
+import { useRouter } from 'expo-router'
 import React from 'react'
 import { Image, ScrollView, Text, TouchableOpacity, View } from 'react-native'
-import BottomNavigation from '../../components/navigation/BottomNavigation'
-import { colors } from '../../utils/globalStyle'
-import { styles } from './quickAnalysis.styles'
+import BottomNavigation from '../components/navigation/BottomNavigation'
+import { colors } from '../utils/colors'
+import { styles } from './quick-analysis.styles'
 
 const QuickAnalysis = () => {
+  const router = useRouter()
   return (
     <View style={styles.container}>
       <StatusBar style="light" />
@@ -15,11 +17,17 @@ const QuickAnalysis = () => {
       <View style={styles.headerSection}>
         <View style={styles.headerContent}>
           <View style={styles.headerTop}>
-            <TouchableOpacity style={styles.backButton}>
+            <TouchableOpacity 
+              style={styles.backButton}
+              onPress={() => router.back()}
+            >
               <Ionicons name="arrow-back" size={24} color="#FFFFFF" />
             </TouchableOpacity>
             <Text style={styles.headerTitle}>Quickly Analysis</Text>
-            <TouchableOpacity style={styles.bellButton}>
+            <TouchableOpacity 
+              style={styles.bellButton}
+              onPress={() => router.push('/(tabs)/notification')}
+            >
               <Ionicons name="notifications-outline" size={20} color={colors.void} />
             </TouchableOpacity>
           </View>
@@ -36,7 +44,7 @@ const QuickAnalysis = () => {
                     <View style={styles.progressArc2} />
                   </View>
                   <View style={styles.circularProgressInner}>
-                    <Image source={require('../../../app/../assets/images/car.svg')} style={{ width: 50, height: 50, alignSelf: 'center' }} resizeMode="contain" />
+                    <Image source={require('../../assets/images/car.svg')} style={{ width: 50, height: 50, alignSelf: 'center' }} resizeMode="contain" />
                   </View>
                 </View>
               </View>
@@ -50,7 +58,7 @@ const QuickAnalysis = () => {
 
             <View style={styles.summaryItem}>
               <View style={styles.summaryRow}>
-                <Image source={require('../../../app/../assets/images/salary.svg')} style={{ width: 25, height: 25, alignSelf: 'center' }} resizeMode="contain" />
+                <Image source={require('../../assets/images/salary.svg')} style={{ width: 25, height: 25, alignSelf: 'center' }} resizeMode="contain" />
                 <View style={styles.summaryDetails}>
                   <Text style={styles.summaryLabelWhite}>Revenue Last Week</Text>
                   <Text style={styles.summaryAmountWhite}>₦4,000.00</Text>
@@ -58,7 +66,7 @@ const QuickAnalysis = () => {
               </View>
               <View style={styles.summaryRowDivider} />
               <View style={styles.summaryRow}>
-                <Image source={require('../../../app/../assets/images/food.svg')} style={{ width: 25, height: 25, alignSelf: 'center' }} resizeMode="contain" />
+                <Image source={require('../../assets/images/food.svg')} style={{ width: 25, height: 25, alignSelf: 'center' }} resizeMode="contain" />
                 <View style={styles.summaryDetails}>
                   <Text style={styles.summaryLabelWhite}>Food Last Week</Text>
                   <Text style={styles.summaryAmountBlue}>-₦100.00</Text>
@@ -150,7 +158,7 @@ const QuickAnalysis = () => {
               <View style={styles.transactionItem}>
                 <View style={styles.transactionIconCircle}>
                   <Image 
-                    source={require('../../../assets/images/salary.svg')} 
+                    source={require('../../assets/images/salary.svg')} 
                     style={{ width: 20, height: 20 }} 
                     resizeMode="contain" 
                   />
@@ -167,7 +175,7 @@ const QuickAnalysis = () => {
               <View style={styles.transactionItem}>
                 <View style={styles.transactionIconCircle}>
                   <Image 
-                    source={require('../../../app/../assets/images/salary.svg')} 
+                    source={require('../../assets/images/salary.svg')} 
                     style={{ width: 20, height: 20 }} 
                     resizeMode="contain" 
                   />
@@ -184,7 +192,7 @@ const QuickAnalysis = () => {
               <View style={styles.transactionItem}>
                 <View style={styles.transactionIconCircle}>
                   <Image 
-                    source={require('../../../app/../assets/images/salary.svg')} 
+                    source={require('../../assets/images/salary.svg')} 
                     style={{ width: 20, height: 20 }} 
                     resizeMode="contain" 
                   />

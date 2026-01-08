@@ -1,9 +1,13 @@
 import { StatusBar } from 'expo-status-bar'
+import { useRouter } from 'expo-router'
 import React from 'react'
 import { Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
-import { colors, typography } from '../../utils/globalStyle'
+import { colors } from '../utils/colors'
+import { typography } from '../utils/globalStyles'
 
-export default function onBoardingA() {
+export default function OnboardingB() {
+  const router = useRouter()
+  
   return (
     <View style={styles.container}>
       <StatusBar style="light" />
@@ -11,8 +15,8 @@ export default function onBoardingA() {
       {/* Top Section - Teal Background */}
       <View style={styles.topSection}>
         <Text style={styles.welcomeText}>
-          Welcome To{'\n'}
-          Expense Manager
+        ¿Are you ready {'\n'} 
+        to take control of your finaces?
         </Text>
       </View>
 
@@ -24,7 +28,7 @@ export default function onBoardingA() {
           <View style={styles.circleBackground}>
             {/* Hand Illustration - Absolute positioned above circle */}
             <Image 
-              source={require('../../../assets/images/onboarda.svg')} 
+              source={require('../../assets/images/onboardb.svg')} 
               style={styles.handIllustration}
               resizeMode="contain"
             />
@@ -32,14 +36,17 @@ export default function onBoardingA() {
         </View>
 
         {/* Next Button */}
-        <TouchableOpacity style={styles.nextButton}>
-          <Text style={styles.nextButtonText}>Next</Text>
+        <TouchableOpacity 
+          style={styles.nextButton}
+          onPress={() => router.push('/(auth)/login')}
+        >
+          <Text style={styles.nextButtonText}>Get Started</Text>
         </TouchableOpacity>
 
         {/* Pagination Dots */}
         <View style={styles.paginationContainer}>
-          <View style={[styles.dot, styles.activeDot]} />
           <View style={[styles.dot, styles.inactiveDot]} />
+          <View style={[styles.dot, styles.activeDot]} />
         </View>
       </View>
     </View>
@@ -98,62 +105,8 @@ const styles = StyleSheet.create({
     position: 'absolute',
     width: 300,
     height: 300,
-    top: -40,
+    top: -45,
     alignSelf: 'center',
-  },
-    arm: {
-    width: 60,
-    height: 140,
-    alignItems: 'center',
-  },
-  sleeve: {
-    width: 50,
-    height: 80,
-    backgroundColor: colors.lightBlue,
-    borderRadius: 25,
-    borderBottomWidth: 3,
-    borderBottomColor: '#FFFFFF',
-  },
-  hand: {
-    width: 60,
-    height: 70,
-    backgroundColor: '#FFDBAC',
-    borderRadius: 30,
-    marginTop: -5,
-  },
-  coinsContainer: {
-    position: 'absolute',
-    width: '100%',
-    height: '100%',
-  },
-  coin: {
-    width: 24,
-    height: 24,
-    borderRadius: 12,
-    backgroundColor: '#FFD700',
-    borderWidth: 2,
-    borderColor: '#FFA500',
-    position: 'absolute',
-  },
-  coin1: {
-    top: 100,
-    left: 88,
-  },
-  coin2: {
-    top: 60,
-    left: 75,
-  },
-  coin3: {
-    top: 40,
-    left: 100,
-  },
-  coin4: {
-    top: 50,
-    left: 120,
-  },
-  coin5: {
-    top: 70,
-    left: 135,
   },
   nextButton: {
     marginTop: 20,
@@ -177,11 +130,12 @@ const styles = StyleSheet.create({
   },
   activeDot: {
     backgroundColor: colors.caribbeanGreen,
+    marginLeft: 8,
   },
   inactiveDot: {
     backgroundColor: 'transparent',
     borderWidth: 1.5,
     borderColor: colors.caribbeanGreen,
-    marginLeft: 8,
   },
 })
+

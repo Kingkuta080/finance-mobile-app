@@ -1,10 +1,14 @@
+import { Ionicons } from '@expo/vector-icons'
 import { StatusBar } from 'expo-status-bar'
 import React, { useState } from 'react'
-import { ScrollView, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native'
-import { colors, typography } from '../../utils/globalStyle'
+import { Image, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native'
+import { colors } from '../utils/colors'
+import { typography } from '../utils/globalStyles'
 
-const ForgottenPassword = () => {
+const Login = () => {
   const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
+  const [showPassword, setShowPassword] = useState(false)
 
   return (
     <View style={styles.container}>
@@ -12,26 +16,14 @@ const ForgottenPassword = () => {
       
       {/* Top Section - Teal Background */}
       <View style={styles.topSection}>
-        <Text style={styles.titleText}>Forgot Password</Text>
+        <Text style={styles.welcomeText}>Welcome</Text>
       </View>
 
       {/* Main Content Card - White */}
-      <ScrollView 
-        style={styles.card}
-        contentContainerStyle={styles.cardContent}
-        showsVerticalScrollIndicator={false}
-      >
-        {/* Heading */}
-        <Text style={styles.heading}>Reset Password?</Text>
-
-        {/* Descriptive Text */}
-        <Text style={styles.descriptionText}>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-        </Text>
-
-        {/* Email Input */}
+      <View style={styles.card}>
+        {/* Username/Email Input */}
         <View style={styles.inputContainer}>
-          <Text style={styles.label}>Enter Email Address</Text>
+          <Text style={styles.label}>Username Or Email</Text>
           <TextInput
             style={styles.input}
             placeholder="example@example.com"
@@ -43,9 +35,39 @@ const ForgottenPassword = () => {
           />
         </View>
 
-        {/* Next Step Button */}
-        <TouchableOpacity style={styles.nextStepButton}>
-          <Text style={styles.nextStepButtonText}>Next Step</Text>
+        {/* Password Input */}
+        <View style={styles.inputContainer}>
+          <Text style={styles.label}>Password</Text>
+          <View style={styles.passwordContainer}>
+            <TextInput
+              style={styles.passwordInput}
+              placeholder="••••••••"
+              placeholderTextColor={colors.cyprus}
+              value={password}
+              onChangeText={setPassword}
+              secureTextEntry={!showPassword}
+            />
+            <TouchableOpacity
+              onPress={() => setShowPassword(!showPassword)}
+              style={styles.eyeIcon}
+            >
+              <Ionicons
+                name={showPassword ? 'eye-off-outline' : 'eye-outline'}
+                size={20}
+                color={colors.cyprus}
+              />
+            </TouchableOpacity>
+          </View>
+        </View>
+
+        {/* Log In Button */}
+        <TouchableOpacity style={styles.loginButton}>
+          <Text style={styles.loginButtonText}>Log In</Text>
+        </TouchableOpacity>
+
+        {/* Forgot Password */}
+        <TouchableOpacity style={styles.forgotPasswordContainer}>
+          <Text style={styles.forgotPasswordText}>Forgot Password?</Text>
         </TouchableOpacity>
 
         {/* Sign Up Button */}
@@ -53,17 +75,20 @@ const ForgottenPassword = () => {
           <Text style={styles.signUpButtonText}>Sign Up</Text>
         </TouchableOpacity>
 
+        {/* Fingerprint Access */}
+        <TouchableOpacity style={styles.fingerprintContainer}>
+          <Text style={styles.fingerprintText}>
+            Use <Text style={styles.fingerprintLink}>Fingerprint</Text> To Access
+          </Text>
+        </TouchableOpacity>
+
         {/* Separator */}
         <Text style={styles.separator}>or sign up with</Text>
 
         {/* Social Media Icons */}
         <View style={styles.socialContainer}>
-          <TouchableOpacity style={styles.socialIcon}>
-            <Text style={styles.socialText}>f</Text>
-          </TouchableOpacity>
-          <TouchableOpacity style={[styles.socialIcon, { marginLeft: 16 }]}>
-            <Text style={styles.socialText}>G</Text>
-          </TouchableOpacity>
+          <Image source={require('../../assets/images/facebook.svg')} style={styles.socialIcon} />
+          <Image source={require('../../assets/images/google.svg')} style={styles.socialIcon} />
         </View>
 
         {/* Sign Up Link at Bottom */}
@@ -72,12 +97,12 @@ const ForgottenPassword = () => {
             Don&apos;t have an account? <Text style={styles.bottomLink}>Sign Up</Text>
           </Text>
         </View>
-      </ScrollView>
+      </View>
     </View>
   )
 }
 
-export default ForgottenPassword
+export default Login
 
 const styles = StyleSheet.create({
   container: {
@@ -87,45 +112,27 @@ const styles = StyleSheet.create({
     height: '100%',
   },
   topSection: {
-    flex: 0.25,
+    flex: 0.3,
     backgroundColor: colors.caribbeanGreen,
     justifyContent: 'center',
     alignItems: 'center',
-    paddingTop: 60,
   },
-  titleText: {
+  welcomeText: {
     ...typography.titleBold,
-    fontSize: 32,
+    fontSize: 30,
     color: colors.void,
   },
   card: {
-    flex: 0.75,
+    flex: 0.7,
     backgroundColor: colors.honeydew,
     borderTopLeftRadius: 30,
     borderTopRightRadius: 30,
-  },
-  cardContent: {
     paddingHorizontal: 24,
     paddingTop: 32,
     paddingBottom: 20,
   },
-  heading: {
-    ...typography.heading1,
-    fontSize: 24,
-    color: colors.void,
-    marginBottom: 12,
-    fontWeight: 'bold',
-  },
-  descriptionText: {
-    ...typography.bodyMedium,
-    fontSize: 14,
-    color: colors.void,
-    marginBottom: 24,
-    lineHeight: 20,
-    opacity: 0.8,
-  },
   inputContainer: {
-    marginBottom: 24,
+    marginBottom: 20,
   },
   label: {
     ...typography.bodyMedium,
@@ -143,23 +150,49 @@ const styles = StyleSheet.create({
     fontSize: 14,
     color: colors.void,
   },
-  nextStepButton: {
+  passwordContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    backgroundColor: colors.lightGreen,
+    borderRadius: 12,
+    paddingHorizontal: 16,
+  },
+  passwordInput: {
+    flex: 1,
+    paddingVertical: 14,
+    ...typography.bodyMedium,
+    fontSize: 14,
+    color: colors.void,
+  },
+  eyeIcon: {
+    padding: 4,
+  },
+  loginButton: {
     backgroundColor: colors.caribbeanGreen,
     borderRadius: 12,
     paddingVertical: 16,
     alignItems: 'center',
     justifyContent: 'center',
     marginTop: 8,
-    marginBottom: 16,
+    marginBottom: 12,
     width: 207,
     height: 45,
     alignSelf: 'center',
   },
-  nextStepButtonText: {
+  loginButtonText: {
     ...typography.heading4,
     fontSize: 16,
-    color: '#FFFFFF',
+    color: colors.void,
     fontWeight: '600',
+  },
+  forgotPasswordContainer: {
+    alignItems: 'center',
+    marginBottom: 20,
+  },
+  forgotPasswordText: {
+    ...typography.bodySmall,
+    fontSize: 14,
+    color: colors.void,
   },
   signUpButton: {
     backgroundColor: colors.lightGreen,
@@ -168,7 +201,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     marginTop: 8,
-    marginBottom: 16,
+    marginBottom: 12,
     width: 207,
     height: 45,
     alignSelf: 'center',
@@ -176,7 +209,20 @@ const styles = StyleSheet.create({
   signUpButtonText: {
     ...typography.heading4,
     fontSize: 16,
-    color: colors.cyprus,
+    color: colors.void,
+    fontWeight: '600',
+  },
+  fingerprintContainer: {
+    alignItems: 'center',
+    marginBottom: 16,
+  },
+  fingerprintText: {
+    ...typography.bodyMedium,
+    fontSize: 14,
+    color: colors.void,
+  },
+  fingerprintLink: {
+    color: colors.oceanBlue,
     fontWeight: '600',
   },
   separator: {
@@ -195,17 +241,11 @@ const styles = StyleSheet.create({
   socialIcon: {
     width: 48,
     height: 48,
-    borderRadius: 24,
-    backgroundColor: colors.void,
-    borderWidth: 1,
-    borderColor: '#FFFFFF',
-    justifyContent: 'center',
-    alignItems: 'center',
   },
   socialText: {
     ...typography.heading3,
     fontSize: 20,
-    color: '#FFFFFF',
+    color: colors.caribbeanGreen,
     fontWeight: 'bold',
   },
   bottomLinkContainer: {

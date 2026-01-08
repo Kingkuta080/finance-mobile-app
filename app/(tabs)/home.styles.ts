@@ -1,5 +1,6 @@
 import { StyleSheet } from 'react-native'
-import { colors, typography } from '../../utils/globalStyle'
+import { colors } from '../utils/colors'
+import { typography } from '../utils/globalStyles'
 
 export const styles = StyleSheet.create({
   container: {
@@ -7,40 +8,46 @@ export const styles = StyleSheet.create({
     backgroundColor: colors.honeydew,
     width: '100%',
   },
+  scrollView: {
+    flex: 1,
+  },
+  scrollContent: {
+    paddingBottom: 100,
+  },
   headerSection: {
     position: 'absolute',
     top: 0,
     left: 0,
     right: 0,
+    bottom: 0,
     backgroundColor: colors.caribbeanGreen,
     width: '100%',
-    borderBottomLeftRadius: 30,
-    borderBottomRightRadius: 30,
+    height: '100%',
   },
   headerContent: {
     paddingTop: 30,
     paddingHorizontal: 24,
-    paddingBottom: 24,
+    paddingBottom: 32,
   },
   headerTop: {
     flexDirection: 'row',
     justifyContent: 'space-between',
-    alignItems: 'center',
-    marginBottom: 24,
-  },
-  backButton: {
-    width: 40,
-    height: 40,
-    justifyContent: 'center',
     alignItems: 'flex-start',
+    marginBottom: 24
   },
-  headerTitle: {
-    ...typography.titleBold,
-    fontSize: 24,
-    color: colors.void,
-    fontWeight: 'bold',
+  greetingContainer: {
     flex: 1,
-    textAlign: 'center',
+  },
+  greetingText: {
+    ...typography.titleBold,
+    fontSize: 28,
+    color: colors.void,
+  },
+  timeText: {
+    ...typography.bodyMedium,
+    fontSize: 16,
+    color: colors.void,
+    opacity: 0.8,
   },
   bellButton: {
     width: 40,
@@ -50,10 +57,140 @@ export const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
   },
+  financialSummary: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    marginBottom: 20,
+  },
+  balanceContainer: {
+    flex: 1,
+  },
+  balanceRow: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginBottom: 8,
+  },
+  balanceLabel: {
+    ...typography.bodySmall,
+    fontSize: 12,
+    color: colors.void,
+    marginLeft: 4,
+    opacity: 0.8,
+  },
+  balanceAmount: {
+    ...typography.titleBold,
+    fontSize: 28,
+    color: colors.honeydew,
+    fontWeight: 'bold',
+  },
+  divider: {
+    width: 1,
+    backgroundColor: colors.oceanBlue,
+    opacity: 0.2,
+    marginHorizontal: 16,
+  },
+  expenseContainer: {
+    flex: 1,
+    alignItems: 'flex-end',
+  },
+  expenseRow: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginBottom: 8,
+  },
+  expenseLabel: {
+    ...typography.bodySmall,
+    fontSize: 12,
+    color: colors.void,
+    marginLeft: 4,
+    opacity: 0.8,
+  },
+  expenseAmount: {
+    ...typography.titleBold,
+    fontSize: 28,
+    color: colors.oceanBlue,
+    fontWeight: 'bold',
+  },
+  progressContainer: {
+    marginTop: 8,
+  },
+  progressBarContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginBottom: 8,
+  },
+  progressBar: {
+    flex: 1,
+    height: 27,
+    backgroundColor: colors.void,
+    borderRadius: 24,
+    overflow: 'hidden',
+    flexDirection: 'row',
+    position: 'relative',
+  },
+  progressFill: {
+    flex: 1,
+    height: '100%',
+    justifyContent: 'center',
+    alignItems: 'flex-start',
+    paddingLeft: 8,
+  },
+  progressUnfilled: {
+    height: '100%',
+    backgroundColor: colors.honeydew,
+    borderRadius: 24,
+    justifyContent: 'center',
+    alignItems: 'flex-end',
+    paddingRight: 8,
+    minWidth: 40,
+  },
+  progressPercentage: {
+    ...typography.bodySmall,
+    fontSize: 12,
+    color: colors.honeydew,
+    fontWeight: '600',
+  },
+  progressTarget: {
+    ...typography.bodySmall,
+    fontSize: 10,
+    color: colors.fenceGreen,
+    fontWeight: '600',
+    lineHeight: 12,
+  },
+  progressStatus: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginTop: 8,
+  },
+  progressStatusText: {
+    ...typography.bodySmall,
+    fontSize: 12,
+    color: colors.void,
+    marginLeft: 6,
+    opacity: 0.8,
+  },
+  honeydewBackground: {
+    position: 'absolute',
+    left: 0,
+    right: 0,
+    top: 0,
+    bottom: 0,
+    backgroundColor: colors.honeydew,
+    borderTopLeftRadius: 40,
+    borderTopRightRadius: 40,
+  },
+  scrollableContent: {
+    flex: 1,
+    paddingTop: 295,
+  },
   summaryCard: {
     backgroundColor: colors.caribbeanGreen,
     borderRadius: 20,
     padding: 20,
+    marginHorizontal: 24,
+    marginTop: 20,
+    marginBottom: 24,
     flexDirection: 'row',
     alignItems: 'flex-start',
     shadowColor: '#000',
@@ -122,7 +259,7 @@ export const styles = StyleSheet.create({
   },
   savingsTextContainer: {
     alignItems: 'center',
-    marginTop: -15,
+    marginTop: -15
   },
   savingsTextLine1: {
     ...typography.bodyMedium,
@@ -135,6 +272,18 @@ export const styles = StyleSheet.create({
     fontSize: 12,
     color: colors.void,
     fontWeight: '500',
+  },
+  summaryLabel: {
+    ...typography.bodySmall,
+    fontSize: 12,
+    color: colors.void,
+    opacity: 0.7,
+  },
+  summaryLabelWhite: {
+    ...typography.bodySmall,
+    fontSize: 10,
+    color: colors.void,
+    fontWeight: '400',
   },
   summaryDivider: {
     width: 1,
@@ -160,11 +309,12 @@ export const styles = StyleSheet.create({
     marginLeft: 12,
     flex: 1,
   },
-  summaryLabelWhite: {
-    ...typography.bodySmall,
-    fontSize: 10,
-    color: colors.void,
-    fontWeight: '400',
+  summaryAmountPositive: {
+    ...typography.heading4,
+    fontSize: 18,
+    color: colors.caribbeanGreen,
+    fontWeight: 'bold',
+    marginTop: 2,
   },
   summaryAmountWhite: {
     ...typography.heading4,
@@ -180,124 +330,44 @@ export const styles = StyleSheet.create({
     fontWeight: 'bold',
     marginTop: 4,
   },
-  scrollableContent: {
-    flex: 1,
-    paddingTop: 240,
-  },
-  contentBackground: {
-    flex: 1,
-    backgroundColor: colors.honeydew,
-    borderTopLeftRadius: 40,
-    borderTopRightRadius: 40,
-    paddingTop: 20,
-  },
-  scrollView: {
-    flex: 1,
-  },
-  scrollContent: {
-    paddingBottom: 100,
-  },
-  chartSection: {
-    paddingHorizontal: 24,
-    marginBottom: 24,
-  },
-  chartHeader: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    marginBottom: 20,
-  },
-  chartTitle: {
-    ...typography.titleBold,
-    fontSize: 20,
-    color: colors.void,
+  summaryAmountNegative: {
+    ...typography.heading4,
+    fontSize: 18,
+    color: colors.vividBlue,
     fontWeight: 'bold',
+    marginTop: 2,
   },
-  chartHeaderIcons: {
+  filterContainer: {
     flexDirection: 'row',
-    gap: 12,
-  },
-  chartIconButton: {
-    width: 32,
-    height: 32,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  chartContainer: {
-    flexDirection: 'row',
-    height: 200,
     backgroundColor: colors.lightGreen,
-    borderRadius: 16,
-    padding: 16,
-  },
-  yAxisLabels: {
-    justifyContent: 'space-between',
-    paddingRight: 8,
-    height: '100%',
-  },
-  yAxisLabel: {
-    ...typography.bodySmall,
-    fontSize: 10,
-    color: colors.cyprus,
-    opacity: 0.6,
-  },
-  barsContainer: {
-    flex: 1,
-    flexDirection: 'row',
+    borderRadius: 30,
+    padding: 4,
+    marginHorizontal: 24,
+    marginBottom: 20,
     justifyContent: 'space-around',
-    alignItems: 'flex-end',
-    paddingLeft: 8,
+    alignItems: 'center',
   },
-  weekColumn: {
+  filterTab: {
     flex: 1,
+    paddingVertical: 10,
+    paddingHorizontal: 16,
+    borderRadius: 26,
+    backgroundColor: 'transparent',
     alignItems: 'center',
-    justifyContent: 'flex-end',
-    height: '100%',
+    justifyContent: 'center',
   },
-  barsWrapper: {
-    flexDirection: 'row',
-    alignItems: 'flex-end',
-    gap: 4,
-    marginBottom: 8,
-    height: 160,
-  },
-  bar: {
-    width: 16,
-    backgroundColor: colors.caribbeanGreen,
-    borderRadius: 4,
-    minHeight: 20,
-  },
-  barGreen: {
+  filterTabActive: {
     backgroundColor: colors.caribbeanGreen,
   },
-  barBlue: {
-    backgroundColor: colors.vividBlue,
-  },
-  weekLabel: {
-    ...typography.bodySmall,
-    fontSize: 10,
-    color: colors.cyprus,
-    opacity: 0.8,
-    marginTop: 4,
-  },
-  transactionsHeader: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    paddingHorizontal: 24,
-    marginBottom: 16,
-  },
-  transactionsTitle: {
-    ...typography.titleBold,
-    fontSize: 20,
-    color: colors.void,
-    fontWeight: 'bold',
-  },
-  seeAllText: {
+  filterText: {
     ...typography.bodyMedium,
     fontSize: 14,
-    color: colors.void,
+    color: colors.cyprus,
     fontWeight: '500',
+  },
+  filterTextActive: {
+    color: '#FFFFFF',
+    fontWeight: '600',
   },
   transactionsContainer: {
     paddingHorizontal: 24,
@@ -332,8 +402,8 @@ export const styles = StyleSheet.create({
   transactionMeta: {
     ...typography.bodySmall,
     fontSize: 12,
-    color: colors.vividBlue,
-    opacity: 0.8,
+    color: colors.cyprus,
+    opacity: 0.6,
     marginBottom: 2,
   },
   transactionCategory: {
@@ -345,7 +415,7 @@ export const styles = StyleSheet.create({
   transactionAmountPositive: {
     ...typography.heading4,
     fontSize: 18,
-    color: colors.void,
+    color: colors.caribbeanGreen,
     fontWeight: 'bold',
   },
   transactionAmountNegative: {

@@ -1,27 +1,54 @@
 import { Ionicons } from '@expo/vector-icons'
+import { useRouter, usePathname } from 'expo-router'
 import React from 'react'
 import { StyleSheet, TouchableOpacity, View } from 'react-native'
-import { colors } from '../../utils/globalStyle'
+import { colors } from '../../utils/colors'
 
 const BottomNavigation = () => {
+  const router = useRouter()
+  const pathname = usePathname()
+  
+  const isActive = (route: string) => {
+    return pathname === route || pathname?.includes(route)
+  }
+  
   return (
     <View style={styles.bottomNav}>
-      <TouchableOpacity style={styles.navItem}>
-        <View style={styles.navIconCircle}>
-          <Ionicons name="home" size={24} color={colors.void} />
-        </View>
+      <TouchableOpacity 
+        style={styles.navItem}
+        onPress={() => router.push('/(tabs)/home')}
+      >
+        {isActive('/(tabs)/home') ? (
+          <View style={styles.navIconCircle}>
+            <Ionicons name="home" size={24} color={colors.void} />
+          </View>
+        ) : (
+          <Ionicons name="home" size={24} color={colors.cyprus} />
+        )}
       </TouchableOpacity>
-      <TouchableOpacity style={styles.navItem}>
-        <Ionicons name="analytics" size={24} color={colors.cyprus} />
+      <TouchableOpacity 
+        style={styles.navItem}
+        onPress={() => router.push('/(tabs)/quick-analysis')}
+      >
+        <Ionicons name="analytics" size={24} color={isActive('/(tabs)/quick-analysis') ? colors.caribbeanGreen : colors.cyprus} />
       </TouchableOpacity>
-      <TouchableOpacity style={styles.navItem}>
-        <Ionicons name="swap-horizontal-outline" size={24} color={colors.cyprus} />
+      <TouchableOpacity 
+        style={styles.navItem}
+        onPress={() => router.push('/(tabs)/transaction')}
+      >
+        <Ionicons name="swap-horizontal-outline" size={24} color={isActive('/(tabs)/transaction') ? colors.caribbeanGreen : colors.cyprus} />
       </TouchableOpacity>
-      <TouchableOpacity style={styles.navItem}>
-        <Ionicons name="layers-outline" size={24} color={colors.cyprus} />
+      <TouchableOpacity 
+        style={styles.navItem}
+        onPress={() => router.push('/(tabs)/account-balance')}
+      >
+        <Ionicons name="layers-outline" size={24} color={isActive('/(tabs)/account-balance') ? colors.caribbeanGreen : colors.cyprus} />
       </TouchableOpacity>
-      <TouchableOpacity style={styles.navItem}>
-        <Ionicons name="person-outline" size={24} color={colors.cyprus} />
+      <TouchableOpacity 
+        style={styles.navItem}
+        onPress={() => router.push('/(tabs)/notification')}
+      >
+        <Ionicons name="person-outline" size={24} color={isActive('/(tabs)/notification') ? colors.caribbeanGreen : colors.cyprus} />
       </TouchableOpacity>
     </View>
   )

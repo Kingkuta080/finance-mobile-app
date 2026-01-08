@@ -1,12 +1,14 @@
 import { Ionicons } from '@expo/vector-icons'
 import { StatusBar } from 'expo-status-bar'
+import { useRouter } from 'expo-router'
 import React from 'react'
 import { ScrollView, Text, TouchableOpacity, View } from 'react-native'
-import BottomNavigation from '../../components/navigation/BottomNavigation'
-import { colors } from '../../utils/globalStyle'
-import { styles } from './notificationScreen.styles'
+import BottomNavigation from '../components/navigation/BottomNavigation'
+import { colors } from '../utils/colors'
+import { styles } from './notification.styles'
 
 const NotificationScreen = () => {
+  const router = useRouter()
   return (
     <View style={styles.container}>
       <StatusBar style="light" />
@@ -14,11 +16,17 @@ const NotificationScreen = () => {
       {/* Header Section */}
       <View style={styles.headerSection}>
         <View style={styles.headerContent}>
-          <TouchableOpacity style={styles.backButton}>
+          <TouchableOpacity 
+            style={styles.backButton}
+            onPress={() => router.back()}
+          >
             <Ionicons name="arrow-back" size={24} color="#FFFFFF" />
           </TouchableOpacity>
           <Text style={styles.headerTitle}>Notification</Text>
-          <TouchableOpacity style={styles.bellButton}>
+          <TouchableOpacity 
+            style={styles.bellButton}
+            onPress={() => router.push('/(tabs)/notification')}
+          >
             <Ionicons name="notifications-outline" size={20} color={colors.void} />
           </TouchableOpacity>
         </View>

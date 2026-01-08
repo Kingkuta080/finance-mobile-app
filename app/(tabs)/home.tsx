@@ -1,12 +1,14 @@
 import { Ionicons } from '@expo/vector-icons'
+import { useRouter } from 'expo-router'
 import { StatusBar } from 'expo-status-bar'
 import React, { useState } from 'react'
 import { Image, ScrollView, Text, TouchableOpacity, View } from 'react-native'
-import BottomNavigation from '../../components/navigation/BottomNavigation'
-import { colors } from '../../utils/globalStyle'
-import { styles } from './HomeScreen.styles'
+import BottomNavigation from '../components/navigation/BottomNavigation'
+import { colors } from '../utils/colors'
+import { styles } from './home.styles'
 
 const HomeScreen = () => {
+  const router = useRouter()
   const [selectedFilter, setSelectedFilter] = useState('Monthly')
 
   return (
@@ -23,7 +25,10 @@ const HomeScreen = () => {
             <Text style={styles.greetingText}>Hi, Welcome Back</Text>
             <Text style={styles.timeText}>Good Morning</Text>
           </View>
-          <TouchableOpacity style={styles.bellButton}>
+          <TouchableOpacity 
+            style={styles.bellButton}
+            onPress={() => router.push('/(tabs)/notification')}
+          >
             <Ionicons name="notifications-outline" size={20} color={colors.void} />
           </TouchableOpacity>
         </View>
@@ -88,7 +93,7 @@ const HomeScreen = () => {
                       <View style={styles.progressArc2} />
                     </View>
                     <View style={styles.circularProgressInner}>
-                      <Image source={require('../../../app/../assets/images/car.svg')} style={{ width: 50, height: 50, alignSelf: 'center' }} resizeMode="contain" />
+                      <Image source={require('../../assets/images/car.svg')} style={{ width: 50, height: 50, alignSelf: 'center' }} resizeMode="contain" />
                     </View>
                   </View>
                 </View>
@@ -102,7 +107,7 @@ const HomeScreen = () => {
 
               <View style={styles.summaryItem}>
                 <View style={styles.summaryRow}>
-                  <Image source={require('../../../app/../assets/images/salary.svg')} style={{ width: 25, height: 25, alignSelf: 'center' }} resizeMode="contain" />
+                  <Image source={require('../../assets/images/salary.svg')} style={{ width: 25, height: 25, alignSelf: 'center' }} resizeMode="contain" />
                   <View style={styles.summaryDetails}>
                     <Text style={styles.summaryLabelWhite}>Revenue Last Week</Text>
                     <Text style={styles.summaryAmountWhite}>₦4,000.00</Text>
@@ -110,7 +115,7 @@ const HomeScreen = () => {
                 </View>
                 <View style={styles.summaryRowDivider} />
                 <View style={styles.summaryRow}>
-                  <Image source={require('../../../app/../assets/images/food.svg')} style={{ width: 25, height: 25, alignSelf: 'center' }} resizeMode="contain" />
+                  <Image source={require('../../assets/images/food.svg')} style={{ width: 25, height: 25, alignSelf: 'center' }} resizeMode="contain" />
                   <View style={styles.summaryDetails}>
                     <Text style={styles.summaryLabelWhite}>Food Last Week</Text>
                     <Text style={styles.summaryAmountBlue}>-₦100.00</Text>
@@ -153,7 +158,7 @@ const HomeScreen = () => {
               <View style={styles.transactionItem}>
                 <View style={styles.transactionIconCircle}>
                   <Image 
-                    source={require('../../../assets/images/salary.svg')} 
+                    source={require('../../assets/images/salary.svg')} 
                     style={{ width: 20, height: 20 }} 
                     resizeMode="contain" 
                   />
@@ -170,7 +175,7 @@ const HomeScreen = () => {
               <View style={styles.transactionItem}>
                 <View style={styles.transactionIconCircle}>
                   <Image 
-                    source={require('../../../assets/images/salary.svg')} 
+                    source={require('../../assets/images/salary.svg')} 
                     style={{ width: 20, height: 20 }} 
                     resizeMode="contain" 
                   />
@@ -187,7 +192,7 @@ const HomeScreen = () => {
               <View style={styles.transactionItem}>
                 <View style={styles.transactionIconCircle}>
                   <Image 
-                    source={require('../../../assets/images/salary.svg')} 
+                    source={require('../../assets/images/salary.svg')} 
                     style={{ width: 20, height: 20 }} 
                     resizeMode="contain" 
                   />

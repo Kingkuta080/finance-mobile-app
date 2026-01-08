@@ -2,7 +2,8 @@ import { Ionicons } from '@expo/vector-icons'
 import { StatusBar } from 'expo-status-bar'
 import React, { useEffect, useRef } from 'react'
 import { Animated, StyleSheet, Text, View } from 'react-native'
-import { colors, typography } from '../../utils/globalStyle'
+import { colors } from '../utils/colors'
+import { typography } from '../utils/globalStyles'
 
 const ChangeSucess = () => {
   const scaleAnim = useRef(new Animated.Value(0)).current
@@ -49,6 +50,8 @@ const ChangeSucess = () => {
         <Text style={styles.messageLine1}>Password Has Been</Text>
         <Text style={styles.messageLine2}>Changed Successfully</Text>
       </View>
+      
+      {/* Auto redirect after 2 seconds or add a button */}
     </View>
   )
 }

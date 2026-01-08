@@ -1,4 +1,5 @@
-import TransactionScreen from "./screens/transaction/transactionScreen";
-  export default function Index() {
-  return <TransactionScreen />;
+import { Redirect } from 'expo-router'
+
+export default function Index() {
+  return <Redirect href="/launch" />
 }

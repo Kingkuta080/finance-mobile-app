@@ -1,35 +1,11 @@
 import { StatusBar } from 'expo-status-bar'
-import React, { useRef, useState } from 'react'
+import React, { useState } from 'react'
 import { ScrollView, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native'
-import { colors, typography } from '../../utils/globalStyle'
+import { colors } from '../utils/colors'
+import { typography } from '../utils/globalStyles'
 
-const SecurityPin = () => {
-  const [pin, setPin] = useState(['', '', '', '', '', ''])
-  const inputRefs = useRef<(TextInput | null)[]>([])
-
-  const handlePinChange = (text: string, index: number) => {
-    // Only allow digits
-    const digit = text.replace(/[^0-9]/g, '')
-    
-    if (digit.length > 1) {
-      return // Only allow single digit
-    }
-
-    const newPin = [...pin]
-    newPin[index] = digit
-    setPin(newPin)
-
-    // Auto-focus next input
-    if (digit && index < 5) {
-      inputRefs.current[index + 1]?.focus()
-    }
-  }
-
-  const handleKeyPress = (key: string, index: number) => {
-    if (key === 'Backspace' && !pin[index] && index > 0) {
-      inputRefs.current[index - 1]?.focus()
-    }
-  }
+const ForgottenPassword = () => {
+  const [email, setEmail] = useState('')
 
   return (
     <View style={styles.container}>
@@ -37,7 +13,7 @@ const SecurityPin = () => {
       
       {/* Top Section - Teal Background */}
       <View style={styles.topSection}>
-        <Text style={styles.titleText}>Security Pin</Text>
+        <Text style={styles.titleText}>Forgot Password</Text>
       </View>
 
       {/* Main Content Card - White */}
@@ -46,36 +22,36 @@ const SecurityPin = () => {
         contentContainerStyle={styles.cardContent}
         showsVerticalScrollIndicator={false}
       >
-        {/* Enter Security Pin Text */}
-        <Text style={styles.enterPinText}>Enter Security Pin</Text>
+        {/* Heading */}
+        <Text style={styles.heading}>Reset Password?</Text>
 
-        {/* Pin Input Circles */}
-        <View style={styles.pinContainer}>
-          {pin.map((digit, index) => (
-            <TextInput
-              key={index}
-              ref={(ref) => {
-                inputRefs.current[index] = ref
-              }}
-              style={styles.pinInput}
-              value={digit}
-              onChangeText={(text) => handlePinChange(text, index)}
-              onKeyPress={({ nativeEvent }) => handleKeyPress(nativeEvent.key, index)}
-              keyboardType="number-pad"
-              maxLength={1}
-              selectTextOnFocus
-            />
-          ))}
+        {/* Descriptive Text */}
+        <Text style={styles.descriptionText}>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+        </Text>
+
+        {/* Email Input */}
+        <View style={styles.inputContainer}>
+          <Text style={styles.label}>Enter Email Address</Text>
+          <TextInput
+            style={styles.input}
+            placeholder="example@example.com"
+            placeholderTextColor={colors.cyprus}
+            value={email}
+            onChangeText={setEmail}
+            keyboardType="email-address"
+            autoCapitalize="none"
+          />
         </View>
 
-        {/* Accept Button */}
-        <TouchableOpacity style={styles.acceptButton}>
-          <Text style={styles.acceptButtonText}>Accept</Text>
+        {/* Next Step Button */}
+        <TouchableOpacity style={styles.nextStepButton}>
+          <Text style={styles.nextStepButtonText}>Next Step</Text>
         </TouchableOpacity>
 
-        {/* Send Again Button */}
-        <TouchableOpacity style={styles.sendAgainButton}>
-          <Text style={styles.sendAgainButtonText}>Send Again</Text>
+        {/* Sign Up Button */}
+        <TouchableOpacity style={styles.signUpButton}>
+          <Text style={styles.signUpButtonText}>Sign Up</Text>
         </TouchableOpacity>
 
         {/* Separator */}
@@ -102,7 +78,7 @@ const SecurityPin = () => {
   )
 }
 
-export default SecurityPin
+export default ForgottenPassword
 
 const styles = StyleSheet.create({
   container: {
@@ -134,34 +110,41 @@ const styles = StyleSheet.create({
     paddingTop: 32,
     paddingBottom: 20,
   },
-  enterPinText: {
-    ...typography.titleBold,
-    fontSize: 20,
-    color: colors.void,
-    marginBottom: 32,
-    fontWeight: 'bold',
-  },
-  pinContainer: {
-    flexDirection: 'row',
-    justifyContent: 'center',
-    alignItems: 'center',
-    marginBottom: 40,
-    gap: 12,
-  },
-  pinInput: {
-    width: 56,
-    height: 56,
-    borderRadius: 28,
-    borderWidth: 1,
-    borderColor: colors.cyprus,
-    backgroundColor: '#FFFFFF',
-    textAlign: 'center',
-    ...typography.heading3,
+  heading: {
+    ...typography.heading1,
     fontSize: 24,
     color: colors.void,
+    marginBottom: 12,
     fontWeight: 'bold',
   },
-  acceptButton: {
+  descriptionText: {
+    ...typography.bodyMedium,
+    fontSize: 14,
+    color: colors.void,
+    marginBottom: 24,
+    lineHeight: 20,
+    opacity: 0.8,
+  },
+  inputContainer: {
+    marginBottom: 24,
+  },
+  label: {
+    ...typography.bodyMedium,
+    fontSize: 14,
+    color: colors.void,
+    marginBottom: 8,
+    fontWeight: '500',
+  },
+  input: {
+    backgroundColor: colors.lightGreen,
+    borderRadius: 12,
+    paddingHorizontal: 16,
+    paddingVertical: 14,
+    ...typography.bodyMedium,
+    fontSize: 14,
+    color: colors.void,
+  },
+  nextStepButton: {
     backgroundColor: colors.caribbeanGreen,
     borderRadius: 12,
     paddingVertical: 16,
@@ -173,13 +156,13 @@ const styles = StyleSheet.create({
     height: 45,
     alignSelf: 'center',
   },
-  acceptButtonText: {
+  nextStepButtonText: {
     ...typography.heading4,
     fontSize: 16,
     color: '#FFFFFF',
     fontWeight: '600',
   },
-  sendAgainButton: {
+  signUpButton: {
     backgroundColor: colors.lightGreen,
     borderRadius: 12,
     paddingVertical: 16,
@@ -191,10 +174,10 @@ const styles = StyleSheet.create({
     height: 45,
     alignSelf: 'center',
   },
-  sendAgainButtonText: {
+  signUpButtonText: {
     ...typography.heading4,
     fontSize: 16,
-    color: colors.void,
+    color: colors.cyprus,
     fontWeight: '600',
   },
   separator: {
@@ -204,7 +187,6 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     marginBottom: 16,
     opacity: 0.6,
-    marginTop: 76,
   },
   socialContainer: {
     flexDirection: 'row',
@@ -215,16 +197,16 @@ const styles = StyleSheet.create({
     width: 48,
     height: 48,
     borderRadius: 24,
-    backgroundColor: 'transparent',
+    backgroundColor: colors.void,
     borderWidth: 1,
-    borderColor: colors.void,
+    borderColor: '#FFFFFF',
     justifyContent: 'center',
     alignItems: 'center',
   },
   socialText: {
     ...typography.heading3,
     fontSize: 20,
-    color: colors.void,
+    color: '#FFFFFF',
     fontWeight: 'bold',
   },
   bottomLinkContainer: {

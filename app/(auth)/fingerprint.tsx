@@ -1,9 +1,12 @@
 import { StatusBar } from 'expo-status-bar'
 import React from 'react'
 import { Image, ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
-import { colors, typography } from '../../utils/globalStyle'
+import { colors } from '../utils/colors'
+import { typography } from '../utils/globalStyles'
+import { useRouter } from 'expo-router'
 
 const FingarPrint = () => {
+  const router = useRouter()
   return (
     <View style={styles.container}>
       <StatusBar style="light" />
@@ -21,7 +24,7 @@ const FingarPrint = () => {
       >
         {/* Fingerprint Icon */}
         <View style={styles.fingerprintIconContainer}>
-          <Image source={require('../../../assets/images/thumb.svg')} style={styles.fingerprintIcon} />
+          <Image source={require('../../assets/images/thumb.svg')} style={styles.fingerprintIcon} />
         </View>
 
         {/* Main Instruction Text */}
@@ -38,7 +41,10 @@ const FingarPrint = () => {
         </TouchableOpacity>
 
         {/* Alternative Option */}
-        <TouchableOpacity style={styles.pinCodeLinkContainer}>
+        <TouchableOpacity 
+          style={styles.pinCodeLinkContainer}
+          onPress={() => router.push('/security-pin')}
+        >
           <Text style={styles.pinCodeLink}>¿Or prefer use pin code?</Text>
         </TouchableOpacity>
       </ScrollView>

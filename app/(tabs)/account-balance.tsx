@@ -1,12 +1,14 @@
 import { Ionicons } from '@expo/vector-icons'
 import { StatusBar } from 'expo-status-bar'
+import { useRouter } from 'expo-router'
 import React from 'react'
 import { Image, ScrollView, Text, TouchableOpacity, View } from 'react-native'
-import BottomNavigation from '../../components/navigation/BottomNavigation'
-import { colors } from '../../utils/globalStyle'
-import { styles } from './transactionScreen.styles'
+import BottomNavigation from '../components/navigation/BottomNavigation'
+import { colors } from '../utils/colors'
+import { styles } from './account-balance.styles'
 
-const TransactionScreen = () => {
+const AccountBalance = () => {
+  const router = useRouter()
   return (
     <View style={styles.container}>
       <StatusBar style="light" />
@@ -15,19 +17,19 @@ const TransactionScreen = () => {
       <View style={styles.headerSection}>
         <View style={styles.headerContent}>
           <View style={styles.headerTop}>
-            <TouchableOpacity style={styles.backButton}>
+            <TouchableOpacity 
+              style={styles.backButton}
+              onPress={() => router.back()}
+            >
               <Ionicons name="arrow-back" size={24} color="#FFFFFF" />
             </TouchableOpacity>
-            <Text style={styles.headerTitle}>Transaction</Text>
-            <TouchableOpacity style={styles.bellButton}>
+            <Text style={styles.headerTitle}>Account Balance</Text>
+            <TouchableOpacity 
+              style={styles.bellButton}
+              onPress={() => router.push('/(tabs)/notification')}
+            >
               <Ionicons name="notifications-outline" size={20} color={colors.void} />
             </TouchableOpacity>
-          </View>
-
-          {/* Total Balance Card */}
-          <View style={styles.totalBalanceCard}>
-            <Text style={styles.totalBalanceLabel}>Total Balance</Text>
-            <Text style={styles.totalBalanceAmount}>₦7,783.00</Text>
           </View>
 
           {/* Financial Summary */}
@@ -63,16 +65,36 @@ const TransactionScreen = () => {
                 </View>
               </View>
             </View>
-            {/* Progress Status Message */}
-            <View style={styles.progressStatus}>
-              <Ionicons name="checkmark-circle" size={16} color={colors.void} />
-              <Text style={styles.progressStatusText}>30% Of Your Expenses, Looks Good.</Text>
+          </View>
+
+          {/* Income and Expense Cards */}
+          <View style={styles.cardsContainer}>
+            <View style={styles.incomeCard}>
+              <View style={styles.cardIcon}>
+                <Ionicons name="arrow-up-right-box-outline" size={32} color={colors.caribbeanGreen} />
+              </View>
+              <Text style={styles.cardLabel}>Income</Text>
+              <Text style={styles.cardAmount}>₦4,000.00</Text>
             </View>
+
+            <View style={styles.expenseCard}>
+              <View style={styles.cardIcon}>
+                <Ionicons name="arrow-down-right-box-outline" size={32} color={colors.caribbeanGreen} />
+              </View>
+              <Text style={styles.cardLabel}>Expense</Text>
+              <Text style={styles.cardAmountExpense}>₦1,187.40</Text>
+            </View>
+          </View>
+
+          {/* Status Message */}
+          <View style={styles.progressStatus}>
+            <Ionicons name="checkmark-circle" size={16} color={colors.void} />
+            <Text style={styles.progressStatusText}>30% Of Your Expenses, Looks Good.</Text>
           </View>
         </View>
       </View>
 
-      {/* Scrollable Content Area */}
+          {/* Scrollable Content Area */}
       <View style={styles.scrollableContent}>
         <View style={styles.contentBackground}>
           <ScrollView 
@@ -80,19 +102,21 @@ const TransactionScreen = () => {
             contentContainerStyle={styles.scrollContent}
             showsVerticalScrollIndicator={false}
           >
-            {/* April Transactions */}
-            <View style={styles.monthHeaderContainer}>
-              <Text style={styles.monthHeader}>April</Text>
+            {/* Transactions Header */}
+            <View style={styles.transactionsHeader}>
+              <Text style={styles.transactionsTitle}>Transactions</Text>
               <TouchableOpacity>
                 <Text style={styles.seeAllText}>See all</Text>
               </TouchableOpacity>
             </View>
+
+            {/* Transaction List */}
             <View style={styles.transactionsContainer}>
               {/* Salary Transaction */}
               <View style={styles.transactionItem}>
                 <View style={styles.transactionIconCircle}>
                   <Image 
-                    source={require('../../../assets/images/salary.svg')} 
+                    source={require('../../assets/images/salary.svg')} 
                     style={{ width: 20, height: 20 }} 
                     resizeMode="contain" 
                   />
@@ -102,14 +126,14 @@ const TransactionScreen = () => {
                   <Text style={styles.transactionMeta}>18:27 - April 30</Text>
                   <Text style={styles.transactionCategory}>Monthly</Text>
                 </View>
-                <Text style={styles.transactionAmountPositive}>₦4,000.00</Text>
+                <Text style={styles.transactionAmountBlue}>₦4,000.00</Text>
               </View>
 
               {/* Groceries Transaction */}
               <View style={styles.transactionItem}>
                 <View style={styles.transactionIconCircle}>
                   <Image 
-                    source={require('../../../assets/images/salary.svg')} 
+                    source={require('../../assets/images/salary.svg')} 
                     style={{ width: 20, height: 20 }} 
                     resizeMode="contain" 
                   />
@@ -126,7 +150,7 @@ const TransactionScreen = () => {
               <View style={styles.transactionItem}>
                 <View style={styles.transactionIconCircle}>
                   <Image 
-                    source={require('../../../assets/images/salary.svg')} 
+                    source={require('../../assets/images/salary.svg')} 
                     style={{ width: 20, height: 20 }} 
                     resizeMode="contain" 
                   />
@@ -142,11 +166,7 @@ const TransactionScreen = () => {
               {/* Transport Transaction */}
               <View style={styles.transactionItem}>
                 <View style={styles.transactionIconCircle}>
-                  <Image 
-                    source={require('../../../assets/images/salary.svg')} 
-                    style={{ width: 20, height: 20 }} 
-                    resizeMode="contain" 
-                  />
+                  <Ionicons name="bus" size={20} color={colors.vividBlue} />
                 </View>
                 <View style={styles.transactionDetails}>
                   <Text style={styles.transactionName}>Transport</Text>
@@ -154,32 +174,6 @@ const TransactionScreen = () => {
                   <Text style={styles.transactionCategory}>Fuel</Text>
                 </View>
                 <Text style={styles.transactionAmountNegative}>-₦4.13</Text>
-              </View>
-            </View>
-
-            {/* March Transactions */}
-            <View style={styles.monthHeaderContainer}>
-              <Text style={styles.monthHeader}>March</Text>
-              <TouchableOpacity>
-                <Text style={styles.seeAllText}>See all</Text>
-              </TouchableOpacity>
-            </View>
-            <View style={styles.transactionsContainer}>
-              {/* Food Transaction */}
-              <View style={styles.transactionItem}>
-                <View style={styles.transactionIconCircle}>
-                  <Image 
-                    source={require('../../../assets/images/salary.svg')} 
-                    style={{ width: 20, height: 20 }} 
-                    resizeMode="contain" 
-                  />
-                </View>
-                <View style={styles.transactionDetails}>
-                  <Text style={styles.transactionName}>Food</Text>
-                  <Text style={styles.transactionMeta}>19:30 - March 31</Text>
-                  <Text style={styles.transactionCategory}>Dinner</Text>
-                </View>
-                <Text style={styles.transactionAmountNegative}>-₦70.40</Text>
               </View>
             </View>
           </ScrollView>
@@ -192,4 +186,4 @@ const TransactionScreen = () => {
   )
 }
 
-export default TransactionScreen
+export default AccountBalance
