@@ -36,14 +36,17 @@ const FingarPrint = () => {
         </Text>
 
         {/* Use Touch Id Button */}
-        <TouchableOpacity style={styles.touchIdButton}>
+        <TouchableOpacity 
+          style={styles.touchIdButton}
+          onPress={() => router.replace('/(tabs)/home')}
+        >
           <Text style={styles.touchIdButtonText}>Use Touch Id</Text>
         </TouchableOpacity>
 
         {/* Alternative Option */}
         <TouchableOpacity 
           style={styles.pinCodeLinkContainer}
-          onPress={() => router.push('/security-pin')}
+          onPress={() => router.push('/(auth)/security-pin')}
         >
           <Text style={styles.pinCodeLink}>¿Or prefer use pin code?</Text>
         </TouchableOpacity>

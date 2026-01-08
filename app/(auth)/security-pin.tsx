@@ -1,10 +1,12 @@
 import { StatusBar } from 'expo-status-bar'
+import { useRouter } from 'expo-router'
 import React, { useRef, useState } from 'react'
 import { ScrollView, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native'
 import { colors } from '../utils/colors'
 import { typography } from '../utils/globalStyles'
 
 const SecurityPin = () => {
+  const router = useRouter()
   const [pin, setPin] = useState(['', '', '', '', '', ''])
   const inputRefs = useRef<(TextInput | null)[]>([])
 
@@ -70,12 +72,21 @@ const SecurityPin = () => {
         </View>
 
         {/* Accept Button */}
-        <TouchableOpacity style={styles.acceptButton}>
+        <TouchableOpacity 
+          style={styles.acceptButton}
+          onPress={() => router.replace('/(tabs)/home')}
+        >
           <Text style={styles.acceptButtonText}>Accept</Text>
         </TouchableOpacity>
 
         {/* Send Again Button */}
-        <TouchableOpacity style={styles.sendAgainButton}>
+        <TouchableOpacity 
+          style={styles.sendAgainButton}
+          onPress={() => {
+            // Reset pin and resend logic here
+            setPin(['', '', '', '', '', ''])
+          }}
+        >
           <Text style={styles.sendAgainButtonText}>Send Again</Text>
         </TouchableOpacity>
 
@@ -93,11 +104,14 @@ const SecurityPin = () => {
         </View>
 
         {/* Sign Up Link at Bottom */}
-        <View style={styles.bottomLinkContainer}>
+        <TouchableOpacity 
+          style={styles.bottomLinkContainer}
+          onPress={() => router.push('/(auth)/create-account')}
+        >
           <Text style={styles.bottomLinkText}>
             Don&apos;t have an account? <Text style={styles.bottomLink}>Sign Up</Text>
           </Text>
-        </View>
+        </TouchableOpacity>
       </ScrollView>
     </View>
   )

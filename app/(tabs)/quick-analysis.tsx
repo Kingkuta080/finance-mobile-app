@@ -149,7 +149,7 @@ const QuickAnalysis = () => {
             {/* Transaction List */}
             <View style={styles.transactionsHeader}>
               <Text style={styles.transactionsTitle}>Transactions</Text>
-              <TouchableOpacity>
+              <TouchableOpacity onPress={() => router.push('/(tabs)/transaction')}>
                 <Text style={styles.seeAllText}>See all</Text>
               </TouchableOpacity>
             </View>

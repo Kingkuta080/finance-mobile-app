@@ -38,7 +38,7 @@ export default function OnboardingA() {
         {/* Next Button */}
         <TouchableOpacity 
           style={styles.nextButton}
-          onPress={() => router.push('/onboarding-b')}
+          onPress={() => router.push('/(onboarding)/onboarding-b')}
         >
           <Text style={styles.nextButtonText}>Next</Text>
         </TouchableOpacity>

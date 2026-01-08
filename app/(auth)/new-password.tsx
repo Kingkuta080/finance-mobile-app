@@ -81,7 +81,7 @@ const NewPassword = () => {
         {/* Change Password Button */}
         <TouchableOpacity 
           style={styles.changePasswordButton}
-          onPress={() => router.push('/success')}
+          onPress={() => router.push('/(auth)/success')}
         >
           <Text style={styles.changePasswordButtonText}>Change Password</Text>
         </TouchableOpacity>

@@ -1,11 +1,13 @@
 import { Ionicons } from '@expo/vector-icons'
 import { StatusBar } from 'expo-status-bar'
+import { useRouter } from 'expo-router'
 import React, { useEffect, useRef } from 'react'
-import { Animated, StyleSheet, Text, View } from 'react-native'
+import { Animated, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 import { colors } from '../utils/colors'
 import { typography } from '../utils/globalStyles'
 
 const ChangeSucess = () => {
+  const router = useRouter()
   const scaleAnim = useRef(new Animated.Value(0)).current
   const opacityAnim = useRef(new Animated.Value(0)).current
 
@@ -24,7 +26,14 @@ const ChangeSucess = () => {
         useNativeDriver: true,
       }),
     ]).start()
-  }, [scaleAnim, opacityAnim])
+
+    // Auto redirect after 3 seconds
+    const timer = setTimeout(() => {
+      router.replace('/(auth)/login')
+    }, 3000)
+
+    return () => clearTimeout(timer)
+  }, [scaleAnim, opacityAnim, router])
 
   return (
     <View style={styles.container}>
@@ -51,7 +60,13 @@ const ChangeSucess = () => {
         <Text style={styles.messageLine2}>Changed Successfully</Text>
       </View>
       
-      {/* Auto redirect after 2 seconds or add a button */}
+      {/* Continue Button */}
+      <TouchableOpacity 
+        style={styles.continueButton}
+        onPress={() => router.replace('/(auth)/login')}
+      >
+        <Text style={styles.continueButtonText}>Continue to Login</Text>
+      </TouchableOpacity>
     </View>
   )
 }
@@ -98,6 +113,19 @@ const styles = StyleSheet.create({
     fontSize: 24,
     color: '#FFFFFF',
     textAlign: 'center',
+    fontWeight: '600',
+  },
+  continueButton: {
+    marginTop: 32,
+    backgroundColor: '#FFFFFF',
+    paddingVertical: 14,
+    paddingHorizontal: 32,
+    borderRadius: 12,
+  },
+  continueButtonText: {
+    ...typography.heading4,
+    fontSize: 16,
+    color: colors.caribbeanGreen,
     fontWeight: '600',
   },
 })

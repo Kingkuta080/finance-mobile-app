@@ -1,11 +1,13 @@
 import { Ionicons } from '@expo/vector-icons'
 import { StatusBar } from 'expo-status-bar'
+import { useRouter } from 'expo-router'
 import React, { useState } from 'react'
 import { ScrollView, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native'
 import { colors } from '../utils/colors'
 import { typography } from '../utils/globalStyles'
 
 const CreateAcount = () => {
+  const router = useRouter()
   const [fullName, setFullName] = useState('')
   const [email, setEmail] = useState('')
   const [mobileNumber, setMobileNumber] = useState('')
@@ -140,16 +142,22 @@ const CreateAcount = () => {
         </Text>
 
         {/* Sign Up Button */}
-        <TouchableOpacity style={styles.signUpButton}>
+        <TouchableOpacity 
+          style={styles.signUpButton}
+          onPress={() => router.replace('/(tabs)/home')}
+        >
           <Text style={styles.signUpButtonText}>Sign Up</Text>
         </TouchableOpacity>
 
         {/* Log In Link at Bottom */}
-        <View style={styles.bottomLinkContainer}>
+        <TouchableOpacity 
+          style={styles.bottomLinkContainer}
+          onPress={() => router.push('/(auth)/login')}
+        >
           <Text style={styles.bottomLinkText}>
             Already have an account? <Text style={styles.bottomLink}>Log In</Text>
           </Text>
-        </View>
+        </TouchableOpacity>
       </ScrollView>
     </View>
   )

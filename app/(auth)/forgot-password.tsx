@@ -1,10 +1,12 @@
 import { StatusBar } from 'expo-status-bar'
+import { useRouter } from 'expo-router'
 import React, { useState } from 'react'
 import { ScrollView, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native'
 import { colors } from '../utils/colors'
 import { typography } from '../utils/globalStyles'
 
 const ForgottenPassword = () => {
+  const router = useRouter()
   const [email, setEmail] = useState('')
 
   return (
@@ -45,12 +47,18 @@ const ForgottenPassword = () => {
         </View>
 
         {/* Next Step Button */}
-        <TouchableOpacity style={styles.nextStepButton}>
+        <TouchableOpacity 
+          style={styles.nextStepButton}
+          onPress={() => router.push('/(auth)/new-password')}
+        >
           <Text style={styles.nextStepButtonText}>Next Step</Text>
         </TouchableOpacity>
 
         {/* Sign Up Button */}
-        <TouchableOpacity style={styles.signUpButton}>
+        <TouchableOpacity 
+          style={styles.signUpButton}
+          onPress={() => router.push('/(auth)/create-account')}
+        >
           <Text style={styles.signUpButtonText}>Sign Up</Text>
         </TouchableOpacity>
 
@@ -68,11 +76,14 @@ const ForgottenPassword = () => {
         </View>
 
         {/* Sign Up Link at Bottom */}
-        <View style={styles.bottomLinkContainer}>
+        <TouchableOpacity 
+          style={styles.bottomLinkContainer}
+          onPress={() => router.push('/(auth)/create-account')}
+        >
           <Text style={styles.bottomLinkText}>
             Don&apos;t have an account? <Text style={styles.bottomLink}>Sign Up</Text>
           </Text>
-        </View>
+        </TouchableOpacity>
       </ScrollView>
     </View>
   )

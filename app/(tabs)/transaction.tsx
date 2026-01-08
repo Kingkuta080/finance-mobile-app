@@ -91,7 +91,7 @@ const TransactionScreen = () => {
             {/* April Transactions */}
             <View style={styles.monthHeaderContainer}>
               <Text style={styles.monthHeader}>April</Text>
-              <TouchableOpacity>
+              <TouchableOpacity onPress={() => {}}>
                 <Text style={styles.seeAllText}>See all</Text>
               </TouchableOpacity>
             </View>
@@ -168,7 +168,7 @@ const TransactionScreen = () => {
             {/* March Transactions */}
             <View style={styles.monthHeaderContainer}>
               <Text style={styles.monthHeader}>March</Text>
-              <TouchableOpacity>
+              <TouchableOpacity onPress={() => {}}>
                 <Text style={styles.seeAllText}>See all</Text>
               </TouchableOpacity>
             </View>

@@ -1,11 +1,13 @@
 import { Ionicons } from '@expo/vector-icons'
 import { StatusBar } from 'expo-status-bar'
+import { useRouter } from 'expo-router'
 import React, { useState } from 'react'
 import { Image, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native'
 import { colors } from '../utils/colors'
 import { typography } from '../utils/globalStyles'
 
 const Login = () => {
+  const router = useRouter()
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [showPassword, setShowPassword] = useState(false)
@@ -61,22 +63,34 @@ const Login = () => {
         </View>
 
         {/* Log In Button */}
-        <TouchableOpacity style={styles.loginButton}>
+        <TouchableOpacity 
+          style={styles.loginButton}
+          onPress={() => router.replace('/(tabs)/home')}
+        >
           <Text style={styles.loginButtonText}>Log In</Text>
         </TouchableOpacity>
 
         {/* Forgot Password */}
-        <TouchableOpacity style={styles.forgotPasswordContainer}>
+        <TouchableOpacity 
+          style={styles.forgotPasswordContainer}
+          onPress={() => router.push('/(auth)/forgot-password')}
+        >
           <Text style={styles.forgotPasswordText}>Forgot Password?</Text>
         </TouchableOpacity>
 
         {/* Sign Up Button */}
-        <TouchableOpacity style={styles.signUpButton}>
+        <TouchableOpacity 
+          style={styles.signUpButton}
+          onPress={() => router.push('/(auth)/create-account')}
+        >
           <Text style={styles.signUpButtonText}>Sign Up</Text>
         </TouchableOpacity>
 
         {/* Fingerprint Access */}
-        <TouchableOpacity style={styles.fingerprintContainer}>
+        <TouchableOpacity 
+          style={styles.fingerprintContainer}
+          onPress={() => router.push('/(auth)/fingerprint')}
+        >
           <Text style={styles.fingerprintText}>
             Use <Text style={styles.fingerprintLink}>Fingerprint</Text> To Access
           </Text>
@@ -92,11 +106,14 @@ const Login = () => {
         </View>
 
         {/* Sign Up Link at Bottom */}
-        <View style={styles.bottomLinkContainer}>
+        <TouchableOpacity 
+          style={styles.bottomLinkContainer}
+          onPress={() => router.push('/(auth)/create-account')}
+        >
           <Text style={styles.bottomLinkText}>
             Don&apos;t have an account? <Text style={styles.bottomLink}>Sign Up</Text>
           </Text>
-        </View>
+        </TouchableOpacity>
       </View>
     </View>
   )

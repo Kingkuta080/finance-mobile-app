@@ -44,7 +44,7 @@ const NotificationScreen = () => {
             <View style={styles.notificationGroup}>
               <View style={styles.groupHeader}>
                 <Text style={styles.groupTitle}>Today</Text>
-                <TouchableOpacity>
+                <TouchableOpacity onPress={() => {}}>
                   <Text style={styles.seeAllText}>See all</Text>
                 </TouchableOpacity>
               </View>
@@ -86,7 +86,7 @@ const NotificationScreen = () => {
             <View style={styles.notificationGroup}>
               <View style={styles.groupHeader}>
                 <Text style={styles.groupTitle}>Yesterday</Text>
-                <TouchableOpacity>
+                <TouchableOpacity onPress={() => {}}>
                   <Text style={styles.seeAllText}>See all</Text>
                 </TouchableOpacity>
               </View>
@@ -129,7 +129,7 @@ const NotificationScreen = () => {
             <View style={styles.notificationGroup}>
               <View style={styles.groupHeader}>
                 <Text style={styles.groupTitle}>This Weekend</Text>
-                <TouchableOpacity>
+                <TouchableOpacity onPress={() => {}}>
                   <Text style={styles.seeAllText}>See all</Text>
                 </TouchableOpacity>
               </View>

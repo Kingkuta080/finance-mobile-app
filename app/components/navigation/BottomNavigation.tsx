@@ -1,55 +1,101 @@
 import { Ionicons } from '@expo/vector-icons'
-import { useRouter, usePathname } from 'expo-router'
+import { useRouter, useSegments, usePathname } from 'expo-router'
 import React from 'react'
 import { StyleSheet, TouchableOpacity, View } from 'react-native'
 import { colors } from '../../utils/colors'
 
 const BottomNavigation = () => {
   const router = useRouter()
+  const segments = useSegments()
   const pathname = usePathname()
   
-  const isActive = (route: string) => {
-    return pathname === route || pathname?.includes(route)
+  // Check if a route is active based on segments and pathname
+  const isActive = (routeName: string) => {
+    // Extract the route name without the group prefix
+    // e.g., '/(tabs)/home' -> 'home', '/(tabs)/quick-analysis' -> 'quick-analysis'
+    const routePath = routeName.replace('/(tabs)/', '')
+    
+    // Check pathname first (most reliable)
+    if (pathname) {
+      // Remove leading/trailing slashes and normalize
+      const normalizedPath = pathname.toLowerCase().replace(/^\/+|\/+$/g, '')
+      const normalizedRoute = routePath.toLowerCase().replace(/^\/+|\/+$/g, '')
+      
+      // Check various pathname formats that Expo Router might use
+      if (
+        normalizedPath === normalizedRoute || 
+        normalizedPath === `(tabs)/${normalizedRoute}` ||
+        normalizedPath.endsWith(`/${normalizedRoute}`) ||
+        normalizedPath.endsWith(normalizedRoute) ||
+        normalizedPath.includes(`/${normalizedRoute}/`) ||
+        normalizedPath.includes(`/${normalizedRoute}`)
+      ) {
+        return true
+      }
+    }
+    
+    // Fallback to segments check
+    // Segments format: ['(tabs)', 'home'] for route '/(tabs)/home'
+    const lastSegment = segments[segments.length - 1]?.toLowerCase()
+    const routeSegment = routePath.toLowerCase()
+    
+    // Check if the last segment matches the route
+    if (lastSegment === routeSegment) {
+      return true
+    }
+    
+    // Check if any segment contains the route name
+    return segments.some(seg => seg.toLowerCase() === routeSegment || seg.toLowerCase().includes(routeSegment))
   }
+  
+  const tabs = [
+    { 
+      route: '/(tabs)/home', 
+      icon: 'home',
+      label: 'Home'
+    },
+    { 
+      route: '/(tabs)/quick-analysis', 
+      icon: 'analytics',
+      label: 'Quick Analysis'
+    },
+    { 
+      route: '/(tabs)/transaction', 
+      icon: 'swap-horizontal-outline',
+      label: 'Transaction'
+    },
+    { 
+      route: '/(tabs)/account-balance', 
+      icon: 'layers-outline',
+      label: 'Account Balance'
+    },
+    { 
+      route: '/(tabs)/notification', 
+      icon: 'person-outline',
+      label: 'Notification'
+    },
+  ]
   
   return (
     <View style={styles.bottomNav}>
-      <TouchableOpacity 
-        style={styles.navItem}
-        onPress={() => router.push('/(tabs)/home')}
-      >
-        {isActive('/(tabs)/home') ? (
-          <View style={styles.navIconCircle}>
-            <Ionicons name="home" size={24} color={colors.void} />
-          </View>
-        ) : (
-          <Ionicons name="home" size={24} color={colors.cyprus} />
-        )}
-      </TouchableOpacity>
-      <TouchableOpacity 
-        style={styles.navItem}
-        onPress={() => router.push('/(tabs)/quick-analysis')}
-      >
-        <Ionicons name="analytics" size={24} color={isActive('/(tabs)/quick-analysis') ? colors.caribbeanGreen : colors.cyprus} />
-      </TouchableOpacity>
-      <TouchableOpacity 
-        style={styles.navItem}
-        onPress={() => router.push('/(tabs)/transaction')}
-      >
-        <Ionicons name="swap-horizontal-outline" size={24} color={isActive('/(tabs)/transaction') ? colors.caribbeanGreen : colors.cyprus} />
-      </TouchableOpacity>
-      <TouchableOpacity 
-        style={styles.navItem}
-        onPress={() => router.push('/(tabs)/account-balance')}
-      >
-        <Ionicons name="layers-outline" size={24} color={isActive('/(tabs)/account-balance') ? colors.caribbeanGreen : colors.cyprus} />
-      </TouchableOpacity>
-      <TouchableOpacity 
-        style={styles.navItem}
-        onPress={() => router.push('/(tabs)/notification')}
-      >
-        <Ionicons name="person-outline" size={24} color={isActive('/(tabs)/notification') ? colors.caribbeanGreen : colors.cyprus} />
-      </TouchableOpacity>
+      {tabs.map((tab) => {
+        const active = isActive(tab.route)
+        return (
+          <TouchableOpacity 
+            key={tab.route}
+            style={styles.navItem}
+            onPress={() => router.push(tab.route)}
+          >
+            {active ? (
+              <View style={styles.navIconCircle}>
+                <Ionicons name={tab.icon as any} size={24} color={colors.void} />
+              </View>
+            ) : (
+              <Ionicons name={tab.icon as any} size={24} color={colors.cyprus} />
+            )}
+          </TouchableOpacity>
+        )
+      })}
     </View>
   )
 }
