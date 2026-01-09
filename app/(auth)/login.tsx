@@ -3,6 +3,7 @@ import { StatusBar } from 'expo-status-bar'
 import { useRouter } from 'expo-router'
 import React, { useState } from 'react'
 import { StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native'
+import { SafeAreaView } from 'react-native-safe-area-context'
 import { colors } from '../utils/colors'
 import { typography } from '../utils/globalStyles'
 import FacebookIcon from '../../assets/images/facebook.svg'
@@ -15,7 +16,7 @@ const Login = () => {
   const [showPassword, setShowPassword] = useState(false)
 
   return (
-    <View style={styles.container}>
+    <SafeAreaView style={styles.container} edges={['top']}>
       <StatusBar style="light" />
       
       {/* Top Section - Teal Background */}
@@ -117,7 +118,7 @@ const Login = () => {
           </Text>
         </TouchableOpacity>
       </View>
-    </View>
+    </SafeAreaView>
   )
 }
 

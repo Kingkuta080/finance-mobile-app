@@ -1,6 +1,7 @@
 import { useRouter } from 'expo-router'
 import React from 'react'
 import { Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
+import { SafeAreaView } from 'react-native-safe-area-context'
 import { colors } from '../utils/colors'
 import { typography } from '../utils/globalStyles'
 
@@ -8,7 +9,7 @@ const LaunchPage = () => {
   const router = useRouter()
   
   return (
-    <View style={styles.container}>
+    <SafeAreaView style={styles.container} edges={['top', 'bottom']}>
       <View style={styles.content}>
         {/* Logo Section */}
         <View style={styles.logoSection}>
@@ -55,7 +56,7 @@ const LaunchPage = () => {
           <Text style={styles.forgotPassword}>Forgot Password?</Text>
         </TouchableOpacity>
       </View>
-    </View>
+    </SafeAreaView>
   )
 }
 

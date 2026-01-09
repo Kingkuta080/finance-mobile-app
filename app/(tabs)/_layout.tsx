@@ -10,7 +10,7 @@ export default function TabsLayout() {
         tabBarInactiveTintColor: colors.cyprus,
         headerShown: false,
         tabBarStyle: {
-          display: 'none', // Hide default tab bar, using custom BottomNavigation
+          display: 'none',
         },
       }}
     >

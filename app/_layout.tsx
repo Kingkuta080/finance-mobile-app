@@ -1,5 +1,3 @@
-import { Stack } from "expo-router";
-import { useFonts } from "expo-font";
 import {
   Poppins_100Thin,
   Poppins_300Light,
@@ -8,8 +6,11 @@ import {
   Poppins_600SemiBold,
   Poppins_700Bold,
 } from "@expo-google-fonts/poppins";
+import { useFonts } from "expo-font";
+import { Stack } from "expo-router";
 import * as SplashScreen from "expo-splash-screen";
 import { useEffect } from "react";
+import { SafeAreaProvider } from "react-native-safe-area-context";
 
 // Keep the splash screen visible while we fetch resources
 SplashScreen.preventAutoHideAsync();
@@ -34,5 +35,14 @@ export default function RootLayout() {
     return null;
   }
 
-  return <Stack />;
+  return (
+    <SafeAreaProvider>
+      <Stack
+        screenOptions={{
+          headerShown: false,
+          contentStyle: { backgroundColor: '#fff' },
+        }}
+      />
+    </SafeAreaProvider>
+  );
 }
