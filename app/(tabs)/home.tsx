@@ -2,10 +2,13 @@ import { Ionicons } from '@expo/vector-icons'
 import { useRouter } from 'expo-router'
 import { StatusBar } from 'expo-status-bar'
 import React, { useState } from 'react'
-import { Image, ScrollView, Text, TouchableOpacity, View } from 'react-native'
+import { ScrollView, Text, TouchableOpacity, View } from 'react-native'
 import BottomNavigation from '../components/navigation/BottomNavigation'
 import { colors } from '../utils/colors'
 import { styles } from './home.styles'
+import CarIcon from '../../assets/images/car.svg'
+import SalaryIcon from '../../assets/images/salary.svg'
+import FoodIcon from '../../assets/images/food.svg'
 
 const HomeScreen = () => {
   const router = useRouter()
@@ -93,7 +96,7 @@ const HomeScreen = () => {
                       <View style={styles.progressArc2} />
                     </View>
                     <View style={styles.circularProgressInner}>
-                      <Image source={require('../../assets/images/car.svg')} style={{ width: 50, height: 50, alignSelf: 'center' }} resizeMode="contain" />
+                      <CarIcon width={50} height={50} />
                     </View>
                   </View>
                 </View>
@@ -107,7 +110,7 @@ const HomeScreen = () => {
 
               <View style={styles.summaryItem}>
                 <View style={styles.summaryRow}>
-                  <Image source={require('../../assets/images/salary.svg')} style={{ width: 25, height: 25, alignSelf: 'center' }} resizeMode="contain" />
+                  <SalaryIcon width={25} height={25} />
                   <View style={styles.summaryDetails}>
                     <Text style={styles.summaryLabelWhite}>Revenue Last Week</Text>
                     <Text style={styles.summaryAmountWhite}>₦4,000.00</Text>
@@ -115,7 +118,7 @@ const HomeScreen = () => {
                 </View>
                 <View style={styles.summaryRowDivider} />
                 <View style={styles.summaryRow}>
-                  <Image source={require('../../assets/images/food.svg')} style={{ width: 25, height: 25, alignSelf: 'center' }} resizeMode="contain" />
+                  <FoodIcon width={25} height={25} />
                   <View style={styles.summaryDetails}>
                     <Text style={styles.summaryLabelWhite}>Food Last Week</Text>
                     <Text style={styles.summaryAmountBlue}>-₦100.00</Text>
@@ -157,11 +160,7 @@ const HomeScreen = () => {
               {/* Salary Transaction */}
               <View style={styles.transactionItem}>
                 <View style={styles.transactionIconCircle}>
-                  <Image 
-                    source={require('../../assets/images/salary.svg')} 
-                    style={{ width: 20, height: 20 }} 
-                    resizeMode="contain" 
-                  />
+                  <SalaryIcon width={20} height={20} />
                 </View>
                 <View style={styles.transactionDetails}>
                   <Text style={styles.transactionName}>Salary</Text>
@@ -174,11 +173,7 @@ const HomeScreen = () => {
               {/* Groceries Transaction */}
               <View style={styles.transactionItem}>
                 <View style={styles.transactionIconCircle}>
-                  <Image 
-                    source={require('../../assets/images/salary.svg')} 
-                    style={{ width: 20, height: 20 }} 
-                    resizeMode="contain" 
-                  />
+                  <SalaryIcon width={20} height={20} />
                 </View>
                 <View style={styles.transactionDetails}>
                   <Text style={styles.transactionName}>Groceries</Text>
@@ -191,11 +186,7 @@ const HomeScreen = () => {
               {/* Rent Transaction */}
               <View style={styles.transactionItem}>
                 <View style={styles.transactionIconCircle}>
-                  <Image 
-                    source={require('../../assets/images/salary.svg')} 
-                    style={{ width: 20, height: 20 }} 
-                    resizeMode="contain" 
-                  />
+                  <SalaryIcon width={20} height={20} />
                 </View>
                 <View style={styles.transactionDetails}>
                   <Text style={styles.transactionName}>Rent</Text>

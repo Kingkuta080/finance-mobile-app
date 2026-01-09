@@ -1,5 +1,5 @@
 import { Ionicons } from '@expo/vector-icons'
-import { useRouter, useSegments, usePathname } from 'expo-router'
+import { useRouter, useSegments, usePathname, Href } from 'expo-router'
 import React from 'react'
 import { StyleSheet, TouchableOpacity, View } from 'react-native'
 import { colors } from '../../utils/colors'
@@ -84,7 +84,7 @@ const BottomNavigation = () => {
           <TouchableOpacity 
             key={tab.route}
             style={styles.navItem}
-            onPress={() => router.push(tab.route)}
+            onPress={() => router.push(tab.route as Href)}
           >
             {active ? (
               <View style={styles.navIconCircle}>

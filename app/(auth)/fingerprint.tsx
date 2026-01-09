@@ -1,9 +1,10 @@
 import { StatusBar } from 'expo-status-bar'
 import React from 'react'
-import { Image, ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
+import { ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 import { colors } from '../utils/colors'
 import { typography } from '../utils/globalStyles'
 import { useRouter } from 'expo-router'
+import ThumbIcon from '../../assets/images/thumb.svg'
 
 const FingarPrint = () => {
   const router = useRouter()
@@ -24,7 +25,9 @@ const FingarPrint = () => {
       >
         {/* Fingerprint Icon */}
         <View style={styles.fingerprintIconContainer}>
-          <Image source={require('../../assets/images/thumb.svg')} style={styles.fingerprintIcon} />
+          <View style={styles.fingerprintIcon}>
+            <ThumbIcon width={160} height={160} />
+          </View>
         </View>
 
         {/* Main Instruction Text */}

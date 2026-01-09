@@ -2,10 +2,11 @@ import { Ionicons } from '@expo/vector-icons'
 import { StatusBar } from 'expo-status-bar'
 import { useRouter } from 'expo-router'
 import React from 'react'
-import { Image, ScrollView, Text, TouchableOpacity, View } from 'react-native'
+import { ScrollView, Text, TouchableOpacity, View } from 'react-native'
 import BottomNavigation from '../components/navigation/BottomNavigation'
 import { colors } from '../utils/colors'
 import { styles } from './account-balance.styles'
+import SalaryIcon from '../../assets/images/salary.svg'
 
 const AccountBalance = () => {
   const router = useRouter()
@@ -115,11 +116,7 @@ const AccountBalance = () => {
               {/* Salary Transaction */}
               <View style={styles.transactionItem}>
                 <View style={styles.transactionIconCircle}>
-                  <Image 
-                    source={require('../../assets/images/salary.svg')} 
-                    style={{ width: 20, height: 20 }} 
-                    resizeMode="contain" 
-                  />
+                  <SalaryIcon width={20} height={20} />
                 </View>
                 <View style={styles.transactionDetails}>
                   <Text style={styles.transactionName}>Salary</Text>
@@ -132,11 +129,7 @@ const AccountBalance = () => {
               {/* Groceries Transaction */}
               <View style={styles.transactionItem}>
                 <View style={styles.transactionIconCircle}>
-                  <Image 
-                    source={require('../../assets/images/salary.svg')} 
-                    style={{ width: 20, height: 20 }} 
-                    resizeMode="contain" 
-                  />
+                  <SalaryIcon width={20} height={20} />
                 </View>
                 <View style={styles.transactionDetails}>
                   <Text style={styles.transactionName}>Groceries</Text>
@@ -149,11 +142,7 @@ const AccountBalance = () => {
               {/* Rent Transaction */}
               <View style={styles.transactionItem}>
                 <View style={styles.transactionIconCircle}>
-                  <Image 
-                    source={require('../../assets/images/salary.svg')} 
-                    style={{ width: 20, height: 20 }} 
-                    resizeMode="contain" 
-                  />
+                  <SalaryIcon width={20} height={20} />
                 </View>
                 <View style={styles.transactionDetails}>
                   <Text style={styles.transactionName}>Rent</Text>

@@ -1,9 +1,10 @@
 import { useRouter } from 'expo-router'
 import { StatusBar } from 'expo-status-bar'
 import React from 'react'
-import { Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
+import { StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 import { colors } from '../utils/colors'
 import { typography } from '../utils/globalStyles'
+import OnboardAIcon from '../../assets/images/onboarda.svg'
 
 export default function OnboardingA() {
   const router = useRouter()
@@ -27,11 +28,9 @@ export default function OnboardingA() {
           {/* Circular Background */}
           <View style={styles.circleBackground}>
             {/* Hand Illustration - Absolute positioned above circle */}
-            <Image 
-              source={require('../../assets/images/onboarda.svg')} 
-              style={styles.handIllustration}
-              resizeMode="contain"
-            />
+            <View style={styles.handIllustration}>
+              <OnboardAIcon width={300} height={300} />
+            </View>
           </View>
         </View>
 

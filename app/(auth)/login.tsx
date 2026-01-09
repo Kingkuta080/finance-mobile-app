@@ -2,9 +2,11 @@ import { Ionicons } from '@expo/vector-icons'
 import { StatusBar } from 'expo-status-bar'
 import { useRouter } from 'expo-router'
 import React, { useState } from 'react'
-import { Image, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native'
+import { StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native'
 import { colors } from '../utils/colors'
 import { typography } from '../utils/globalStyles'
+import FacebookIcon from '../../assets/images/facebook.svg'
+import GoogleIcon from '../../assets/images/google.svg'
 
 const Login = () => {
   const router = useRouter()
@@ -101,8 +103,8 @@ const Login = () => {
 
         {/* Social Media Icons */}
         <View style={styles.socialContainer}>
-          <Image source={require('../../assets/images/facebook.svg')} style={styles.socialIcon} />
-          <Image source={require('../../assets/images/google.svg')} style={styles.socialIcon} />
+          <FacebookIcon width={35} height={34} />
+          <GoogleIcon width={35} height={34} />
         </View>
 
         {/* Sign Up Link at Bottom */}
